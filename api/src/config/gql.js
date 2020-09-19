@@ -2,6 +2,7 @@ const responseCachePlugin = require("apollo-server-plugin-response-cache");
 const typeDefs = require("../schema");
 const resolvers = require("../resolvers");
 const db = require("../db/models");
+const logger = require("pino")();
 const { DEBUG = false } = process.env;
 const trace = DEBUG === "true";
 
@@ -23,6 +24,10 @@ const config = {
   cacheControl: {
     // Default cache max age 5 seconds
     defaultMaxAge: 5,
+  },
+  formatError: (error) => {
+    logger.error(error);
+    return error;
   },
   // Plugin for cache responses
   // Its possible combine this plugin with redis plugin to get a share cache data

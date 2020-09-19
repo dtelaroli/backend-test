@@ -5,12 +5,15 @@ const resolver = {
     Cart: {
       items: async (_source, {}, {}) => _source.getCartItems(),
     },
+    CartItem: {
+      sku: async (_source, {}, {}) => _source.getSku()
+    }
   },
   Query: {
     searchCart: async (_source, { filter: { id } }, { db }) => cartBusiness.find(db, id),
   },
   Mutation: {
-    addCartItem: async (_source, { input }, { db }) => db.Cart.create(input),
+    addCartItem: async (_source, { input }, { db }) => cartBusiness.addItem(db, input),
     updateCartItem: async (_source, { input }, { db }) =>
       db.Cart.update(input, {
         where: {

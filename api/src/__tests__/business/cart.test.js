@@ -1,35 +1,82 @@
 const { cartBusiness } = require("../../business");
-const db = require("../../db/models");
 
-jest.mock("../../db/models");
+const db = require("../../db/models");
+const { Cart, CartItem, Sku, sequelize } = db;
+const { CART_EMPTY, CART, SKU, CART_ITEM_1 } = require("../../db/seeders/config");
 
 describe("CartBusiness", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  it("Should return cart if exists", async () => {
-    db.Cart.findByPk.mockImplementation((id) => Promise.resolve({ id }));
+  describe("find", () => {
+    const spy = jest.spyOn(Cart, "create");
 
-    const id = 1;
+    it("Should return cart if exists", async () => {
+      const result = await cartBusiness.find(db, CART.id);
 
-    const result = await cartBusiness.find(db, id);
+      expect(result).not.toBe(null);
+      const raw = result.get({ plain: true });
+      expect(raw).toStrictEqual(CART);
+      expect(spy).toHaveBeenCalledTimes(0);
+    });
 
-    expect(result).not.toBe(null);
-    expect(result.id).toBe(id);
-    expect(db.Cart.create).toHaveBeenCalledTimes(0);
+    it("Should create cart if does not exists", async () => {
+      const id = 2;
+
+      const result = await cartBusiness.find(db, id);
+
+      expect(result).not.toBe(null);
+      expect(result.id).toBe(id);
+      expect(Cart.create).toHaveBeenCalledTimes(1);
+    });
   });
 
-  it("Should create cart and return", async () => {
-    db.Cart.findByPk.mockImplementation((id) => Promise.resolve(null));
-    db.Cart.create.mockImplementation((input) => Promise.resolve(input));
+  describe("addItem", () => {
+    const spy = jest.spyOn(sequelize, "transaction");
 
-    const id = 2;
+    it("Should add product item to cart", async () => {
+      const object = {
+        cartId: CART_EMPTY.id,
+        skuId: SKU.id,
+        quantity: 1,
+      };
 
-    const result = await cartBusiness.find(db, id);
+      const cart = await Cart.findByPk(CART_EMPTY.id);
 
-    expect(result).not.toBe(null);
-    expect(result.id).toBe(id);
-    expect(db.Cart.create).toHaveBeenCalledTimes(1);
+      expect(cart.totalAmount).toBe(CART_EMPTY.totalAmount);
+      expect(cart.totalQuantity).toBe(CART_EMPTY.totalQuantity);
+
+      const result = await cartBusiness.addItem(db, object);
+
+      expect(result).not.toBe(null);
+      expect(result.id).toBe(CART_EMPTY.id);
+      expect(result.totalAmount).toBe(CART_ITEM_1.itemAmount);
+      expect(result.totalQuantity).toBe(CART_ITEM_1.itemQuantity);
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it("Should increment quantity when sku exists", async () => {
+      const object = {
+        cartId: CART.id,
+        skuId: SKU.id,
+        quantity: 1,
+      };
+
+      const cart = await Cart.findByPk(CART.id);
+
+      expect(cart.totalAmount).toBe(CART.totalAmount);
+      expect(cart.totalQuantity).toBe(CART.totalQuantity);
+
+      const result = await cartBusiness.addItem(db, object);
+
+      expect(result).not.toBe(null);
+      expect(result.id).toBe(CART.id);
+      expect(result.totalAmount).toBe(CART.totalAmount + CART_ITEM_1.itemAmount);
+      expect(result.totalQuantity).toBe(CART.totalQuantity + CART_ITEM_1.itemQuantity);
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    }, 30000);
   });
 });
