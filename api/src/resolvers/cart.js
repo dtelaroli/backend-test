@@ -1,4 +1,9 @@
 const resolver = {
+  root: {
+    Cart: {
+      items: async (_source, {}, {}) => _source.getCartItems(),
+    },
+  },
   Query: {
     searchCart: async (_source, { id }, { db }) => db.Cart.findByPk(id),
   },

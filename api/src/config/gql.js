@@ -2,14 +2,12 @@ const responseCachePlugin = require("apollo-server-plugin-response-cache");
 const typeDefs = require("../schema");
 const resolvers = require("../resolvers");
 const db = require("../db/models");
+const { DEBUG = false } = process.env;
+const trace = DEBUG === "true";
 
 const config = {
   typeDefs,
   resolvers,
-  cacheControl: {
-    // Default cache max age 5 seconds
-    defaultMaxAge: 5,
-  },
   cors: {
     // Cors allowing all origins
     origin: "*",
@@ -22,7 +20,12 @@ const config = {
       db,
     };
   },
+  cacheControl: {
+    // Default cache max age 5 seconds
+    defaultMaxAge: 5,
+  },
   // Plugin for cache responses
+  // Its possible combine this plugin with redis plugin to get a share cache data
   plugins: [responseCachePlugin()],
 
   // By default, the GraphQL Playground interface and GraphQL introspection
@@ -30,11 +33,11 @@ const config = {
   //
   // If you'd like to have GraphQL Playground and introspection enabled in production,
   // the `playground` and `introspection` options must be set explicitly to `true`.
-  playground: true,
   introspection: true,
-  tracing: true,
+  playground: trace,
+  tracing: trace,
   engine: {
-    reportSchema: true,
+    reportSchema: trace,
     graphVariant: "current",
   },
 };

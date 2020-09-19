@@ -7,6 +7,7 @@ const sku = require("./sku");
 const resolvers = {
   ...scalar,
   ...product.root,
+  ...cart.root,
   Query: {
     ...cart.Query,
     ...product.Query,
