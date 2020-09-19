@@ -6,12 +6,23 @@
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon --inspect -r dotenv/config app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "setupFiles": [
+      "dotenv/config"
+    ],
+    "silent": true
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^8.2.0",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"

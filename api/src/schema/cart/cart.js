@@ -4,10 +4,18 @@ const type = gql`
   type Cart {
     id: ID!
     totalAmount: Float!
-    countItems: Int!
+    totalQuantity: Int!
     createdAt: DateTime
     updatedAt: DateTime
     items: [CartItem]
+  }
+
+  input CreateCartInput {
+    id: ID
+    totalAmount: Float!
+    countItems: Int!
+    createdAt: String
+    updatedAt: String
   }
 `;
 

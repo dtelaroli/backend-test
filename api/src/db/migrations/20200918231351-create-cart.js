@@ -7,18 +7,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.UUID,
       },
-      quantity: {
+      totalQuantity: {
         allowNull: false,
         type: Sequelize.INTEGER,
       },
       totalAmount: {
         allowNull: false,
         type: Sequelize.DECIMAL,
-      },
-      skuId: {
-        allowNull: false,
-        type: Sequelize.UUID,
-        references: { model: "Skus", key: "id" },
       },
       createdAt: {
         allowNull: false,

@@ -19,9 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
       },
-      quantity: DataTypes.INTEGER,
+      totalQuantity: DataTypes.INTEGER,
       totalAmount: DataTypes.DECIMAL,
-      skuId: DataTypes.UUID,
     },
     {
       sequelize,

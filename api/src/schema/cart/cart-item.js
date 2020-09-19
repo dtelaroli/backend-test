@@ -5,7 +5,7 @@ const type = gql`
     id: ID!
     cartId: ID!
     skuId: ID!
-    quantity: Int!
+    itemQuantity: Int!
     itemAmount: Float!
     createdAt: DateTime
     updatedAt: DateTime
@@ -13,6 +13,7 @@ const type = gql`
   }
 
   input CartItemInput {
+    cartId: ID
     skuId: ID!
     quantity: Int!
   }

@@ -1,3 +1,5 @@
+const { cartBusiness } = require("../business");
+
 const resolver = {
   root: {
     Cart: {
@@ -5,7 +7,7 @@ const resolver = {
     },
   },
   Query: {
-    searchCart: async (_source, { id }, { db }) => db.Cart.findByPk(id),
+    searchCart: async (_source, { filter: { id } }, { db }) => cartBusiness.find(db, id),
   },
   Mutation: {
     addCartItem: async (_source, { input }, { db }) => db.Cart.create(input),
