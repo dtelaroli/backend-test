@@ -2,7 +2,7 @@ const { gql } = require("apollo-server-core");
 
 const type = gql`
   extend type Query {
-    searchProduct(filter: SearchFilter): [Product]
+    searchCart(filter: SearchFilter): [Product]
   }
 
   input SearchFilter {

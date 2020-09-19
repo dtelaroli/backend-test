@@ -1,5 +1,4 @@
 const { gql } = require("apollo-server-core");
-const directives = require("../directives");
 
 const type = gql`
   type Query {
@@ -15,4 +14,4 @@ const type = gql`
   }
 `;
 
-module.exports = [type, ...directives];
+module.exports = [type];
