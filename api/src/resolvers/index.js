@@ -5,8 +5,12 @@ const product = require("./product");
 const sku = require("./sku");
 
 const resolvers = {
-  ...cart,
   ...scalar,
+  ...product.root,
+  Query: {
+    ...cart.Query,
+    ...product.Query,
+  },
   Mutation: {
     ...cart.Mutation,
     ...product.Mutation,

@@ -1,4 +1,12 @@
 const resolver = {
+  root: {
+    Product: {
+      skus: async (_source, {}, {}) => _source.getSkus(),
+    },
+  },
+  Query: {
+    listProducts: async (_source, {}, { db }) => db.Product.findAll(),
+  },
   Mutation: {
     createProduct: async (_source, { input }, { db }) => db.Product.create(input),
     updateProduct: async (_source, { input }, { db }) =>

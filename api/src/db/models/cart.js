@@ -9,11 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Cart.hasMany(models.Sku);
+      // Cart.hasMany(models.Sku);
     }
   }
   Cart.init(
     {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+      },
       quantity: DataTypes.INTEGER,
       totalAmount: DataTypes.DECIMAL,
       skuId: DataTypes.UUID,

@@ -16,15 +16,17 @@ const type = gql`
     sku: String!
     inventory: Int!
     price: Float!
+    productId: ID!
     createdAt: DateTime
     updatedAt: DateTime
   }
 
   input UpdateSkuInput {
     id: ID!
-    sku: String!
-    inventory: Int!
-    price: Float!
+    sku: String
+    inventory: Int
+    price: Float
+    productId: ID
     createdAt: DateTime
     updatedAt: DateTime
   }

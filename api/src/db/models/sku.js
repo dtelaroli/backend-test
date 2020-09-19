@@ -8,12 +8,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      console.log(models);
       // define association here
-      Sku.belongsTo(models.Product);
+      Sku.belongsTo(models.Product, { foreignKey: "productId" });
     }
   }
   Sku.init(
     {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
       sku: DataTypes.STRING,
       inventory: DataTypes.INTEGER,
       price: DataTypes.DECIMAL,
