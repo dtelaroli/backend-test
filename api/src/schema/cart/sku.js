@@ -30,6 +30,12 @@ const type = gql`
     createdAt: DateTime
     updatedAt: DateTime
   }
+
+  extend type Mutation {
+    createSku(input: CreateSkuInput!): Sku
+    updateSku(input: UpdateSkuInput!): Sku
+    deleteSku(id: ID!): ConfirmationResponse
+  }
 `;
 
 module.exports = type;

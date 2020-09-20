@@ -8,8 +8,12 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/index.js")[env];
 const db = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+// Solve Sequelize Postgres decimal bug https://github.com/sequelize/sequelize/issues/8019
+Sequelize.postgres.DECIMAL.parse = function (value) {
+  return parseFloat(value);
+};
 
+const sequelize = new Sequelize(config.database, config.username, config.password, config);
 fs.readdirSync(__dirname)
   .filter((file) => {
     return file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js";

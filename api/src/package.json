@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
+    "test": "jest",
     "dev": "nodemon --inspect -r dotenv/config app.js",
-    "test": "jest --watch"
+    "test:watch": "jest --watch"
   },
   "jest": {
     "testEnvironment": "node",
@@ -42,6 +43,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "graphql-scalars": "^1.2.7",
+    "lodash": "^4.17.20",
     "pg": "^8.3.3",
     "pino": "^6.6.1"
   }

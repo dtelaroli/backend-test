@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
       },
       itemQuantity: DataTypes.INTEGER,
-      itemAmount: DataTypes.DECIMAL,
+      itemAmount: DataTypes.DECIMAL(10, 2),
       cartId: DataTypes.UUID,
       skuId: DataTypes.UUID,
     },

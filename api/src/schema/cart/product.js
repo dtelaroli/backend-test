@@ -25,6 +25,16 @@ const type = gql`
     createdAt: String
     updatedAt: String
   }
+
+  extend type Mutation {
+    createProduct(input: CreateProductInput!): Product
+    updateProduct(input: UpdateProductInput!): Product
+    deleteProduct(id: ID!): ConfirmationResponse
+  }
+
+  extend type Query {
+    listProducts: [Product]
+  }
 `;
 
 module.exports = type;

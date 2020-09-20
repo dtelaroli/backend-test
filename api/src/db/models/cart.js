@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
       },
       totalQuantity: DataTypes.INTEGER,
-      totalAmount: DataTypes.DECIMAL,
+      totalAmount: DataTypes.DECIMAL(10, 2),
     },
     {
       sequelize,

@@ -17,6 +17,10 @@ const type = gql`
     createdAt: String
     updatedAt: String
   }
+
+  extend type Query {
+    getCart(id: ID!): Cart
+  }
 `;
 
 module.exports = type;
