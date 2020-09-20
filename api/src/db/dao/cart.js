@@ -1,4 +1,4 @@
-const { transactional } = require("../db/utils");
+const { transactional } = require("../utils");
 
 const find = async ({ Cart }, id) => {
   const cart = await Cart.findByPk(id);

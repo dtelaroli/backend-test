@@ -11,6 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Sku.belongsTo(models.Product, { foreignKey: "productId" });
     }
+
+    static async patch(input) {
+      await Sku.update(input, {
+        where: {
+          id: input.id,
+        },
+      });
+      return Sku.findByPk(input.id);
+    }
   }
   Sku.init(
     {

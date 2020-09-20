@@ -1,8 +1,8 @@
-const { cartBusiness } = require("../../business");
+const { cartDAO } = require("../../../db/dao");
 
-const db = require("../../db/models");
+const db = require("../../../db/models");
 const { Cart, CartItem, Sku, sequelize } = db;
-const { CART_EMPTY, CART, SKU, CART_ITEM_1 } = require("../../db/seeders/config");
+const { CART_EMPTY, CART, SKU, CART_ITEM_1 } = require("../../../db/seeders/config");
 
 describe("CartBusiness", () => {
   afterEach(() => {
@@ -13,7 +13,7 @@ describe("CartBusiness", () => {
     const spy = jest.spyOn(Cart, "create");
 
     it("Should return cart if exists", async () => {
-      const result = await cartBusiness.find(db, CART.id);
+      const result = await cartDAO.find(db, CART.id);
 
       expect(result).not.toBe(null);
       const raw = result.get({ plain: true });
@@ -24,7 +24,7 @@ describe("CartBusiness", () => {
     it("Should create cart if does not exists", async () => {
       const id = 2;
 
-      const result = await cartBusiness.find(db, id);
+      const result = await cartDAO.find(db, id);
 
       expect(result).not.toBe(null);
       expect(result.id).toBe(id);
@@ -47,7 +47,7 @@ describe("CartBusiness", () => {
       expect(cart.totalAmount).toBe(CART_EMPTY.totalAmount);
       expect(cart.totalQuantity).toBe(CART_EMPTY.totalQuantity);
 
-      const result = await cartBusiness.addItem(db, object);
+      const result = await cartDAO.addItem(db, object);
 
       expect(result).not.toBe(null);
       expect(result.id).toBe(CART_EMPTY.id);
@@ -69,7 +69,7 @@ describe("CartBusiness", () => {
       expect(cart.totalAmount).toBe(CART.totalAmount);
       expect(cart.totalQuantity).toBe(CART.totalQuantity);
 
-      const result = await cartBusiness.addItem(db, object);
+      const result = await cartDAO.addItem(db, object);
 
       expect(result).not.toBe(null);
       expect(result.id).toBe(CART.id);

@@ -7,10 +7,13 @@
     "start": "node app.js",
     "test": "jest",
     "dev": "nodemon --inspect -r dotenv/config app.js",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watchAll"
   },
   "jest": {
     "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.test.js"
+    ],
     "coveragePathIgnorePatterns": [
       "/node_modules/"
     ],
@@ -22,7 +25,7 @@
     ],
     "silent": false
   },
-  "author": "",
+  "author": "Denilson Telaroli",
   "license": "ISC",
   "devDependencies": {
     "dotenv": "^8.2.0",

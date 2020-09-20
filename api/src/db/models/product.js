@@ -13,6 +13,15 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "productId",
       });
     }
+
+    static async patch(input) {
+      await Product.update(input, {
+        where: {
+          id: input.id,
+        },
+      });
+      return Product.findByPk(input.id);
+    }
   }
   Product.init(
     {

@@ -1,4 +1,4 @@
-const { cartBusiness } = require("../business");
+const { cartDAO } = require("../db/dao");
 
 const resolver = {
   Cart: {
@@ -8,10 +8,10 @@ const resolver = {
     sku: async (_source) => _source.getSku(),
   },
   Query: {
-    getCart: async (_source, { id }, { db }) => cartBusiness.find(db, id),
+    getCart: async (_source, { id }, { db }) => cartDAO.find(db, id),
   },
   Mutation: {
-    addCartItem: async (_source, { input }, { db }) => cartBusiness.addItem(db, input),
+    addCartItem: async (_source, { input }, { db }) => cartDAO.addItem(db, input),
     updateCartItem: async (_source, { input }, { db }) =>
       db.Cart.update(input, {
         where: {
