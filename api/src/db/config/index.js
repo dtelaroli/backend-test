@@ -8,9 +8,6 @@ const defaultConfig = {
   password,
   dialect: "postgres",
   logging: (sql) => logger.info({ sql }),
-  options: {
-    // dialectOptions: { decimalNumbers: true }
-  },
 };
 
 const config = {

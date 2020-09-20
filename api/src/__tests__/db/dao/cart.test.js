@@ -1,10 +1,16 @@
 const { cartDAO } = require("../../../db/dao");
+const { prepareTests } = require("../../../db/utils");
 
 const db = require("../../../db/models");
-const { Cart, CartItem, Sku, sequelize } = db;
-const { CART_EMPTY, CART, SKU, CART_ITEM_1 } = require("../../../db/seeders/config");
+const { Cart, sequelize } = db;
+const { CART_EMPTY, CART, SKU, CART_ITEM_1, CART_ITEM_2 } = require("../../../db/seeders/config");
+const transaction = jest.spyOn(sequelize, "transaction");
 
-describe("CartBusiness", () => {
+describe("CartDAO", () => {
+  beforeEach(() => {
+    prepareTests.seed();
+  });
+
   afterEach(() => {
     jest.clearAllMocks();
   });
@@ -33,8 +39,6 @@ describe("CartBusiness", () => {
   });
 
   describe("addItem", () => {
-    const spy = jest.spyOn(sequelize, "transaction");
-
     it("Should add product item to cart", async () => {
       const object = {
         cartId: CART_EMPTY.id,
@@ -54,7 +58,7 @@ describe("CartBusiness", () => {
       expect(result.totalAmount).toBe(CART_ITEM_1.itemAmount);
       expect(result.totalQuantity).toBe(CART_ITEM_1.itemQuantity);
 
-      expect(spy).toHaveBeenCalledTimes(1);
+      expect(transaction).toHaveBeenCalledTimes(1);
     });
 
     it("Should increment quantity when sku exists", async () => {
@@ -76,7 +80,76 @@ describe("CartBusiness", () => {
       expect(result.totalAmount).toBe(CART.totalAmount + CART_ITEM_1.itemAmount);
       expect(result.totalQuantity).toBe(CART.totalQuantity + CART_ITEM_1.itemQuantity);
 
-      expect(spy).toHaveBeenCalledTimes(1);
-    }, 30000);
+      expect(transaction).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe("updateItem", () => {
+    it("Should add product item to cart", async () => {
+      const object = {
+        cartId: CART_EMPTY.id,
+        skuId: SKU.id,
+        quantity: 1,
+      };
+
+      const cart = await Cart.findByPk(CART_EMPTY.id);
+
+      expect(cart.totalAmount).toBe(CART_EMPTY.totalAmount);
+      expect(cart.totalQuantity).toBe(CART_EMPTY.totalQuantity);
+
+      const result = await cartDAO.updateItem(db, object);
+
+      expect(result).not.toBe(null);
+      expect(result.id).toBe(CART_EMPTY.id);
+      expect(result.totalAmount).toBe(CART_ITEM_1.itemAmount);
+      expect(result.totalQuantity).toBe(CART_ITEM_1.itemQuantity);
+
+      expect(transaction).toHaveBeenCalledTimes(1);
+    });
+
+    it("Should update quantity when sku exists", async () => {
+      const object = {
+        cartId: CART.id,
+        skuId: SKU.id,
+        quantity: 5,
+      };
+
+      const cart = await Cart.findByPk(CART.id);
+
+      expect(cart.totalAmount).toBe(CART.totalAmount);
+      expect(cart.totalQuantity).toBe(CART.totalQuantity);
+
+      const result = await cartDAO.updateItem(db, object);
+
+      expect(result).not.toBe(null);
+      expect(result.id).toBe(CART.id);
+      expect(result.totalAmount).toBe(CART_ITEM_2.itemAmount + object.quantity * SKU.price);
+      expect(result.totalQuantity).toBe(CART_ITEM_2.itemQuantity + object.quantity);
+
+      expect(transaction).toHaveBeenCalledTimes(1);
+    });
+  });
+  
+  describe("deleteItem", () => {
+    it("Should delete item from cart", async () => {
+      const object = {
+        cartId: CART.id,
+        skuId: SKU.id,
+      };
+
+      const cart = await Cart.findByPk(CART.id);
+
+      expect(cart.totalAmount).toBe(CART.totalAmount);
+      expect(cart.totalQuantity).toBe(CART.totalQuantity);
+
+      const result = await cartDAO.deleteItem(db, object);
+
+      expect(result).not.toBe(null);
+      expect(result.id).toBe(CART.id);
+      expect(result.totalAmount).toBe(CART_ITEM_2.itemAmount);
+      expect(result.totalQuantity).toBe(CART_ITEM_2.itemQuantity);
+
+      expect(transaction).toHaveBeenCalledTimes(1);
+    });
   });
 });

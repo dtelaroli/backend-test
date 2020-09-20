@@ -1,16 +1,6 @@
-const { transactional } = require("../utils");
+const { transactional } = require("../../utils");
 
-const find = async ({ Cart }, id) => {
-  const cart = await Cart.findByPk(id);
-
-  if (!cart) {
-    return Cart.create({ id, totalAmount: 0, totalQuantity: 0 });
-  }
-
-  return cart;
-};
-
-const addItem = async ({ CartItem, Sku, sequelize }, { cartId, skuId, quantity }) => {
+const operation = async ({ CartItem, Sku, sequelize }, { cartId, skuId, quantity }, operation) => {
   return transactional(sequelize, async () => {
     let cartItem = await CartItem.findOne({
       where: {
@@ -21,12 +11,7 @@ const addItem = async ({ CartItem, Sku, sequelize }, { cartId, skuId, quantity }
 
     const sku = await Sku.findByPk(skuId);
     if (cartItem) {
-      const itemQuantity = cartItem.itemQuantity + quantity;
-      const itemAmount = sku.price * itemQuantity;
-      cartItem = await cartItem.update({
-        itemQuantity,
-        itemAmount,
-      });
+      cartItem = await operation({ cartItem, sku, quantity });
     } else {
       const itemAmount = sku.price * quantity;
       cartItem = await CartItem.create({
@@ -51,7 +36,4 @@ const addItem = async ({ CartItem, Sku, sequelize }, { cartId, skuId, quantity }
   });
 };
 
-module.exports = {
-  find,
-  addItem,
-};
+module.exports = operation;

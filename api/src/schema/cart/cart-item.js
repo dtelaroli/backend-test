@@ -18,10 +18,15 @@ const type = gql`
     quantity: Int!
   }
 
+  input DeleteCartItemInput {
+    cartId: ID
+    skuId: ID!
+  }
+
   extend type Mutation {
     addCartItem(input: CartItemInput!): Cart
     updateCartItem(input: CartItemInput!): Cart
-    deleteCartItem(id: ID!): ConfirmationResponse
+    deleteCartItem(input: DeleteCartItemInput!): Cart
   }
 `;
 

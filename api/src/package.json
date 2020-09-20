@@ -21,13 +21,14 @@
       "dotenv/config"
     ],
     "setupFilesAfterEnv": [
-      "./.prepare-tests.js"
+      "./db/config/prepare.js"
     ],
-    "silent": false
+    "silent": true
   },
   "author": "Denilson Telaroli",
   "license": "ISC",
   "devDependencies": {
+    "apollo-server-testing": "^2.17.0",
     "dotenv": "^8.2.0",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
