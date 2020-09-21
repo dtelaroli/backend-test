@@ -13,7 +13,7 @@ describe("Sku", () => {
   describe("Mutation", () => {
     const ID = "11111111-1111-1111-1111-111111111110";
 
-    describe("createProduct", () => {
+    describe("createSku", () => {
       it("Should create and delete sku", async () => {
         const create = await mutate({
           mutation: CREATE_SKU,

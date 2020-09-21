@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CartItem Mutation Should create cart, add, update and remove a item to cart 1`] = `
+Object {
+  "add": Object {
+    "data": Object {
+      "addCartItem": Object {
+        "id": "321",
+        "items": Array [
+          Object {
+            "cartId": "321",
+            "itemAmount": 99.9,
+            "itemQuantity": 10,
+            "sku": Object {
+              "id": "321",
+              "inventory": 10,
+              "price": 9.99,
+              "sku": "S123",
+            },
+            "skuId": "321",
+          },
+        ],
+        "totalAmount": 99.9,
+        "totalQuantity": 10,
+      },
+    },
+    "errors": undefined,
+    "extensions": undefined,
+    "http": Object {
+      "headers": Headers {
+        Symbol(map): Object {
+          "Cache-Control": Array [
+            "max-age=5, public",
+          ],
+        },
+      },
+    },
+  },
+  "get": Object {
+    "data": Object {
+      "getCart": Object {
+        "id": "321",
+        "items": Array [],
+        "totalAmount": 0,
+        "totalQuantity": 0,
+      },
+    },
+    "errors": undefined,
+    "extensions": undefined,
+    "http": Object {
+      "headers": Headers {
+        Symbol(map): Object {
+          "Cache-Control": Array [
+            "max-age=5, public",
+          ],
+        },
+      },
+    },
+  },
+  "remove": Object {
+    "data": Object {
+      "deleteCartItem": Object {
+        "id": "321",
+        "items": Array [],
+        "totalAmount": 0,
+        "totalQuantity": 0,
+      },
+    },
+    "errors": undefined,
+    "extensions": undefined,
+    "http": Object {
+      "headers": Headers {
+        Symbol(map): Object {
+          "Cache-Control": Array [
+            "max-age=5, public",
+          ],
+        },
+      },
+    },
+  },
+  "update": Object {
+    "data": Object {
+      "updateCartItem": Object {
+        "id": "321",
+        "items": Array [
+          Object {
+            "cartId": "321",
+            "itemAmount": 9.99,
+            "itemQuantity": 1,
+            "sku": Object {
+              "id": "321",
+              "inventory": 10,
+              "price": 9.99,
+              "sku": "S123",
+            },
+            "skuId": "321",
+          },
+        ],
+        "totalAmount": 9.99,
+        "totalQuantity": 1,
+      },
+    },
+    "errors": undefined,
+    "extensions": undefined,
+    "http": Object {
+      "headers": Headers {
+        Symbol(map): Object {
+          "Cache-Control": Array [
+            "max-age=5, public",
+          ],
+        },
+      },
+    },
+  },
+}
+`;

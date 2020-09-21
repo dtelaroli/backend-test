@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sku Mutation createProduct Should create and delete sku 1`] = `
+exports[`Sku Mutation createSku Should create and delete sku 1`] = `
 Object {
   "create": Object {
     "data": Object {
@@ -10,8 +10,6 @@ Object {
         "price": 9.99,
         "product": Object {
           "id": "11111111-1111-1111-1111-111111111113",
-          "image": "image1.jpg",
-          "name": "product1",
         },
         "sku": "S123",
       },
@@ -49,7 +47,7 @@ Object {
 }
 `;
 
-exports[`Sku Mutation createProduct Should update sku 1`] = `
+exports[`Sku Mutation createSku Should update sku 1`] = `
 Object {
   "data": Object {
     "updateSku": Object {
@@ -58,8 +56,6 @@ Object {
       "price": 4.12,
       "product": Object {
         "id": "11111111-1111-1111-1111-111111111113",
-        "image": "image1.jpg",
-        "name": "product3",
       },
       "sku": "S123",
     },

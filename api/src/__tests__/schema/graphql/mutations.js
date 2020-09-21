@@ -37,8 +37,6 @@ const CREATE_SKU = gql`
       price
       product {
         id
-        name
-        image
       }
     }
   }
@@ -53,8 +51,6 @@ const UPDATE_SKU = gql`
       price
       product {
         id
-        name
-        image
       }
     }
   }
@@ -68,6 +64,72 @@ const DELETE_SKU = gql`
   }
 `;
 
+const ADD_CART_ITEM = gql`
+  mutation AddCartItem($input: CartItemInput!) {
+    addCartItem(input: $input) {
+      id
+      totalQuantity
+      totalAmount
+      items {
+        cartId
+        skuId
+        sku {
+          id
+          sku
+          inventory
+          price
+        }
+        itemQuantity
+        itemAmount
+      }
+    }
+  }
+`;
+
+const UPDATE_CART_ITEM = gql`
+  mutation UpdateCartItem($input: CartItemInput!) {
+    updateCartItem(input: $input) {
+      id
+      totalQuantity
+      totalAmount
+      items {
+        cartId
+        skuId
+        sku {
+          id
+          sku
+          inventory
+          price
+        }
+        itemQuantity
+        itemAmount
+      }
+    }
+  }
+`;
+
+const DELETE_CART_ITEM = gql`
+  mutation DeleteCartItem($input: DeleteCartItemInput!) {
+    deleteCartItem(input: $input) {
+      id
+      totalQuantity
+      totalAmount
+      items {
+        cartId
+        skuId
+        sku {
+          id
+          sku
+          inventory
+          price
+        }
+        itemQuantity
+        itemAmount
+      }
+    }
+  }
+`;
+
 module.exports = {
   CREATE_PRODUCT,
   UPDATE_PRODUCT,
@@ -75,4 +137,7 @@ module.exports = {
   CREATE_SKU,
   UPDATE_SKU,
   DELETE_SKU,
+  ADD_CART_ITEM,
+  UPDATE_CART_ITEM,
+  DELETE_CART_ITEM,
 };
