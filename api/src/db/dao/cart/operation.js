@@ -10,9 +10,12 @@ const operation = async ({ CartItem, Sku, sequelize }, { cartId, skuId, quantity
     });
 
     const sku = await Sku.findByPk(skuId);
+
     if (cartItem) {
-      cartItem = await operation({ cartItem, sku, quantity });
+      const sum = await CartItem.sum("itemQuantity", { where: { cartId, skuId } });
+      cartItem = await operation({ cartItem, sku, sum, quantity });
     } else {
+      if (sku.inventory < quantity) throw new Error("Quantity unavailable");
       const itemAmount = sku.price * quantity;
       cartItem = await CartItem.create({
         cartId,

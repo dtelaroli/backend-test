@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "jest",
-    "dev": "NODE_ENV=development nodemon --inspect -r dotenv/config app.js",
+    "dev": "NODE_ENV=development nodemon --inspect -r dotenv-flow/config app.js",
     "test:watch": "jest --watchAll"
   },
   "jest": {
@@ -18,7 +18,7 @@
       "/node_modules/"
     ],
     "setupFiles": [
-      "dotenv/config"
+      "dotenv-flow/config"
     ],
     "setupFilesAfterEnv": [
       "./db/config/prepare.js"
@@ -30,6 +30,7 @@
   "devDependencies": {
     "apollo-server-testing": "^2.17.0",
     "dotenv": "^8.2.0",
+    "dotenv-flow": "^3.2.0",
     "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "sequelize": "^6.3.5",

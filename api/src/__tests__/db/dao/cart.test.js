@@ -82,6 +82,21 @@ describe("CartDAO", () => {
 
       expect(transaction).toHaveBeenCalledTimes(1);
     });
+
+    it("Should return error if quantity unavailable", async () => {
+      const object = {
+        cartId: CART.id,
+        skuId: SKU.id,
+        quantity: 11,
+      };
+
+      const cart = await Cart.findByPk(CART.id);
+
+      expect(cart.totalAmount).toBe(CART.totalAmount);
+      expect(cart.totalQuantity).toBe(CART.totalQuantity);
+
+      expect(cartDAO.addItem(db, object)).rejects.toThrow("Quantity unavailable");
+    });
   });
 
   describe("updateItem", () => {
@@ -128,8 +143,23 @@ describe("CartDAO", () => {
 
       expect(transaction).toHaveBeenCalledTimes(1);
     });
+
+    it("Should return error if quantity unavailable", async () => {
+      const object = {
+        cartId: CART.id,
+        skuId: SKU.id,
+        quantity: 11,
+      };
+
+      const cart = await Cart.findByPk(CART.id);
+
+      expect(cart.totalAmount).toBe(CART.totalAmount);
+      expect(cart.totalQuantity).toBe(CART.totalQuantity);
+
+      expect(cartDAO.updateItem(db, object)).rejects.toThrow("Quantity unavailable");
+    });
   });
-  
+
   describe("deleteItem", () => {
     it("Should delete item from cart", async () => {
       const object = {
