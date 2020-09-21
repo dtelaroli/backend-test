@@ -2,7 +2,7 @@ const responseCachePlugin = require("apollo-server-plugin-response-cache");
 const typeDefs = require("../schema");
 const resolvers = require("../resolvers");
 const db = require("../db/models");
-const logger = require("pino")();
+const { logger } = require("../utils");
 const { DEBUG = false } = process.env;
 const trace = DEBUG === "true";
 

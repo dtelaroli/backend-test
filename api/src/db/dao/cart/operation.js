@@ -1,3 +1,4 @@
+const { UserInputError } = require("apollo-server");
 const { transactional } = require("../../utils");
 
 const operation = async ({ CartItem, Sku, sequelize }, { cartId, skuId, quantity }, operation) => {
@@ -12,10 +13,9 @@ const operation = async ({ CartItem, Sku, sequelize }, { cartId, skuId, quantity
     const sku = await Sku.findByPk(skuId);
 
     if (cartItem) {
-      const sum = await CartItem.sum("itemQuantity", { where: { cartId, skuId } });
-      cartItem = await operation({ cartItem, sku, sum, quantity });
+      cartItem = await operation({ cartItem, sku, quantity });
     } else {
-      if (sku.inventory < quantity) throw new Error("Quantity unavailable");
+      if (sku.inventory < quantity) throw new UserInputError("Quantity unavailable", { invalidArgs: { quantity } });
       const itemAmount = sku.price * quantity;
       cartItem = await CartItem.create({
         cartId,

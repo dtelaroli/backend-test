@@ -1,4 +1,5 @@
-const logger = require("pino")();
+const { logger } = require("../../utils");
+
 const { DB_HOST: host, DB_NAME: database, DB_USERNAME: username, DB_PASSWORD: password } = process.env;
 
 const defaultConfig = {

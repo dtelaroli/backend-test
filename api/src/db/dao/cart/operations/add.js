@@ -1,5 +1,8 @@
-const operation = async ({ cartItem, sku, sum, quantity }) => {
-  if (sku.inventory < sum + quantity) throw new Error("Quantity unavailable");
+const { UserInputError } = require("apollo-server");
+
+const operation = async ({ cartItem, sku, quantity }) => {
+  if (sku.inventory < cartItem.itemQuantity + quantity)
+    throw new UserInputError("Quantity unavailable", { invalidArgs: { quantity } });
 
   const itemQuantity = cartItem.itemQuantity + quantity;
   return cartItem.update({
