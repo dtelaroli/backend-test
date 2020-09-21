@@ -1,6 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Query getCart Should return cart if exists 1`] = `
+exports[`Cart Query getCart Should return a new cart if does not exists 1`] = `
+Object {
+  "data": Object {
+    "getCart": Object {
+      "id": "123",
+      "items": Array [],
+      "totalAmount": 0,
+      "totalQuantity": 0,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
+        ],
+      },
+    },
+  },
+}
+`;
+
+exports[`Cart Query getCart Should return cart if exists 1`] = `
 Object {
   "data": Object {
     "getCart": Object {

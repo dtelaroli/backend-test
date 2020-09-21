@@ -23,10 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       return Product.findByPk(input.id);
     }
 
-    static async remove(input) {
-      await Product.destroy(input, {
+    static async remove(id) {
+      await Product.destroy({
         where: {
-          id: input.id,
+          id
         },
       });
       return { message: "Product removed" };

@@ -1,13 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sku Mutation createProduct Should create and delete product 1`] = `
+exports[`Sku Mutation createProduct Should create and delete sku 1`] = `
 Object {
   "create": Object {
     "data": Object {
-      "createProduct": Object {
+      "createSku": Object {
         "id": "11111111-1111-1111-1111-111111111110",
-        "image": "image1.jpg",
-        "name": "product2",
+        "inventory": 10,
+        "price": 9.99,
+        "product": Object {
+          "id": "11111111-1111-1111-1111-111111111113",
+          "image": "image1.jpg",
+          "name": "product1",
+        },
+        "sku": "S123",
       },
     },
     "errors": undefined,
@@ -24,8 +30,8 @@ Object {
   },
   "destroy": Object {
     "data": Object {
-      "deleteProduct": Object {
-        "message": "Product removed",
+      "deleteSku": Object {
+        "message": "Sku removed",
       },
     },
     "errors": undefined,
@@ -43,13 +49,19 @@ Object {
 }
 `;
 
-exports[`Sku Mutation createProduct Should update product 1`] = `
+exports[`Sku Mutation createProduct Should update sku 1`] = `
 Object {
   "data": Object {
-    "updateProduct": Object {
-      "id": "11111111-1111-1111-1111-111111111113",
-      "image": "image1.jpg",
-      "name": "product3",
+    "updateSku": Object {
+      "id": "11111111-1111-1111-1111-111111111112",
+      "inventory": 5,
+      "price": 4.12,
+      "product": Object {
+        "id": "11111111-1111-1111-1111-111111111113",
+        "image": "image1.jpg",
+        "name": "product3",
+      },
+      "sku": "S123",
     },
   },
   "errors": undefined,

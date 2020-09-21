@@ -28,8 +28,51 @@ const DELETE_PRODUCT = gql`
   }
 `;
 
+const CREATE_SKU = gql`
+  mutation CreateSku($input: CreateSkuInput!) {
+    createSku(input: $input) {
+      id
+      sku
+      inventory
+      price
+      product {
+        id
+        name
+        image
+      }
+    }
+  }
+`;
+
+const UPDATE_SKU = gql`
+  mutation UpdateSku($input: UpdateSkuInput!) {
+    updateSku(input: $input) {
+      id
+      sku
+      inventory
+      price
+      product {
+        id
+        name
+        image
+      }
+    }
+  }
+`;
+
+const DELETE_SKU = gql`
+  mutation DeleteSku($id: ID!) {
+    deleteSku(id: $id) {
+      message
+    }
+  }
+`;
+
 module.exports = {
   CREATE_PRODUCT,
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
+  CREATE_SKU,
+  UPDATE_SKU,
+  DELETE_SKU,
 };

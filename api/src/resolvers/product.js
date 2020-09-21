@@ -8,12 +8,7 @@ const resolver = {
   Mutation: {
     createProduct: async (_source, { input }, { db }) => db.Product.create(input),
     updateProduct: async (_source, { input }, { db }) => db.Product.patch(input),
-    deleteProduct: async (_source, { id }, { db }) =>
-      db.Product.remove({
-        where: {
-          id,
-        },
-      }),
+    deleteProduct: async (_source, { id }, { db }) => db.Product.remove(id),
   },
 };
 

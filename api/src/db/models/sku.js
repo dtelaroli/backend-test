@@ -20,6 +20,15 @@ module.exports = (sequelize, DataTypes) => {
       });
       return Sku.findByPk(input.id);
     }
+
+    static async remove(id) {
+      await Sku.destroy({
+        where: {
+          id,
+        },
+      });
+      return { message: "Sku removed" };
+    }
   }
   Sku.init(
     {
