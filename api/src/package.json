@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "test": "jest",
-    "dev": "nodemon --inspect -r dotenv/config app.js",
+    "dev": "NODE_ENV=development nodemon --inspect -r dotenv/config app.js",
     "test:watch": "jest --watchAll"
   },
   "jest": {

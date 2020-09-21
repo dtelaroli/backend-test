@@ -1,6 +1,6 @@
 "use strict";
 
-const { CART, CART_EMPTY, CART_ITEM_1, CART_ITEM_2, SKU, SKU_2, PRODUCT } = require("./config");
+const { CART, CART_EMPTY, CART_ITEM_1, CART_ITEM_2, SKU, SKU_2, PRODUCT } = require("./consts");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {

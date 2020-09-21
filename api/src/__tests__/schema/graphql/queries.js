@@ -6,8 +6,6 @@ const GET_CART = gql`
       id
       totalQuantity
       totalAmount
-      createdAt
-      updatedAt
       items {
         id
         cartId

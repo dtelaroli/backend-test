@@ -1,14 +1,14 @@
 const { cartDAO } = require("../../../db/dao");
-const { prepareTests } = require("../../../db/utils");
+const { seed } = require("../../helpers");
 
 const db = require("../../../db/models");
 const { Cart, sequelize } = db;
-const { CART_EMPTY, CART, SKU, CART_ITEM_1, CART_ITEM_2 } = require("../../../db/seeders/config");
+const { CART_EMPTY, CART, SKU, CART_ITEM_1, CART_ITEM_2 } = require("../../../db/seeders/consts");
 const transaction = jest.spyOn(sequelize, "transaction");
 
 describe("CartDAO", () => {
   beforeEach(() => {
-    prepareTests.seed();
+    seed();
   });
 
   afterEach(() => {

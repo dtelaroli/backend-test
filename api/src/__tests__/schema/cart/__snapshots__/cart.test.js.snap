@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Query getCart Should return cart if exists 1`] = `
+Object {
+  "data": Object {
+    "getCart": Object {
+      "id": "11111111-1111-1111-1111-111111111111",
+      "items": Array [
+        Object {
+          "cartId": "11111111-1111-1111-1111-111111111111",
+          "id": "11111111-1111-1111-1111-111111111115",
+          "itemAmount": 10,
+          "itemQuantity": 1,
+          "sku": Object {
+            "id": "11111111-1111-1111-1111-111111111112",
+            "inventory": 10,
+            "price": 10,
+            "sku": "123",
+          },
+          "skuId": "11111111-1111-1111-1111-111111111112",
+        },
+        Object {
+          "cartId": "11111111-1111-1111-1111-111111111111",
+          "id": "11111111-1111-1111-1111-111111111116",
+          "itemAmount": 10,
+          "itemQuantity": 2,
+          "sku": Object {
+            "id": "11111111-1111-1111-1111-111111111117",
+            "inventory": 10,
+            "price": 5,
+            "sku": "456",
+          },
+          "skuId": "11111111-1111-1111-1111-111111111117",
+        },
+      ],
+      "totalAmount": 20,
+      "totalQuantity": 3,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
+        ],
+      },
+    },
+  },
+}
+`;

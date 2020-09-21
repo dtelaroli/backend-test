@@ -1,3 +1,3 @@
-const { prepareTests } = require("../utils");
+const { migrate } = require("../../__tests__/helpers");
 
-prepareTests.migrate();
+migrate();
