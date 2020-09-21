@@ -1,7 +1,8 @@
-const { seed, mutate } = require("../../helpers");
+const { seed, mutate, query } = require("../../helpers");
 const { PRODUCT } = require("../../../db/seeders/consts");
 
 const {
+  queries: { LIST_PRODUCTS },
   mutations: { CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT },
 } = require("../graphql");
 
@@ -9,6 +10,19 @@ describe("Sku", () => {
   beforeEach(() => {
     seed();
   });
+
+  describe("Query", () => {
+    describe("listProducts", () => {
+      it("Should list all products", async () => {
+        const result = await query({
+          query: LIST_PRODUCTS,
+        });
+
+        expect(result).toMatchSnapshot();
+      });
+    });
+  });
+
   describe("Mutation", () => {
     const ID = "11111111-1111-1111-1111-111111111110";
 

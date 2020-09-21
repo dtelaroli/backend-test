@@ -8,6 +8,7 @@ describe("Cart", () => {
   beforeEach(() => {
     seed();
   });
+  
   describe("Query", () => {
     describe("getCart", () => {
       it("Should return cart if exists", async () => {

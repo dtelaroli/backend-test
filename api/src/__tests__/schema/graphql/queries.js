@@ -23,6 +23,17 @@ const GET_CART = gql`
   }
 `;
 
+const LIST_PRODUCTS = gql`
+  query ListProducts {
+    listProducts {
+      id
+      name
+      image
+    }
+  }
+`;
+
 module.exports = {
   GET_CART,
+  LIST_PRODUCTS,
 };

@@ -65,3 +65,28 @@ Object {
   },
 }
 `;
+
+exports[`Sku Query listProducts Should list all products 1`] = `
+Object {
+  "data": Object {
+    "listProducts": Array [
+      Object {
+        "id": "11111111-1111-1111-1111-111111111113",
+        "image": "image1.jpg",
+        "name": "product1",
+      },
+    ],
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
+        ],
+      },
+    },
+  },
+}
+`;
