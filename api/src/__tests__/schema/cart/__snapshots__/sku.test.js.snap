@@ -1,46 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sku Mutation createSku Should create and delete sku 1`] = `
+exports[`Sku Mutation createSku Should create sku 1`] = `
 Object {
-  "create": Object {
-    "data": Object {
-      "createSku": Object {
-        "id": "11111111-1111-1111-1111-111111111110",
-        "inventory": 10,
-        "price": 9.99,
-        "product": Object {
-          "id": "11111111-1111-1111-1111-111111111113",
-        },
-        "sku": "S123",
+  "data": Object {
+    "createSku": Object {
+      "id": "d",
+      "inventory": 10,
+      "price": 10,
+      "product": Object {
+        "id": "d",
       },
+      "sku": "111",
     },
-    "errors": undefined,
-    "extensions": undefined,
-    "http": Object {
-      "headers": Headers {
-        Symbol(map): Object {
-          "Cache-Control": Array [
-            "max-age=5, public",
-          ],
-        },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
+        ],
       },
     },
   },
-  "destroy": Object {
-    "data": Object {
-      "deleteSku": Object {
-        "message": "Sku removed",
-      },
+}
+`;
+
+exports[`Sku Mutation createSku Should delete sku 1`] = `
+Object {
+  "data": Object {
+    "deleteSku": Object {
+      "message": "Sku removed",
     },
-    "errors": undefined,
-    "extensions": undefined,
-    "http": Object {
-      "headers": Headers {
-        Symbol(map): Object {
-          "Cache-Control": Array [
-            "max-age=5, public",
-          ],
-        },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
+        ],
       },
     },
   },
@@ -51,11 +52,11 @@ exports[`Sku Mutation createSku Should update sku 1`] = `
 Object {
   "data": Object {
     "updateSku": Object {
-      "id": "11111111-1111-1111-1111-111111111112",
+      "id": "e",
       "inventory": 5,
       "price": 4.12,
       "product": Object {
-        "id": "11111111-1111-1111-1111-111111111113",
+        "id": "d",
       },
       "sku": "S123",
     },

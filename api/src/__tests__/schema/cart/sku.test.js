@@ -1,41 +1,38 @@
 const { seed, mutate } = require("../../helpers");
-const { SKU, PRODUCT } = require("../../../db/seeders/consts");
-
 const {
   mutations: { CREATE_SKU, UPDATE_SKU, DELETE_SKU },
 } = require("../graphql");
 
+const seedData = require("../../../db/seeders/20200923032202-sku");
+const { SKU, SKU_UPDATE, SKU_DELETE } = seedData;
+
 describe("Sku", () => {
   beforeEach(() => {
-    seed();
+    seed("20200923032202-sku");
   });
 
   describe("Mutation", () => {
-    const ID = "11111111-1111-1111-1111-111111111110";
-
     describe("createSku", () => {
-      it("Should create and delete sku", async () => {
-        const create = await mutate({
+      it("Should create sku", async () => {
+        const result = await mutate({
           mutation: CREATE_SKU,
           variables: {
-            input: {
-              id: ID,
-              sku: "S123",
-              inventory: 10,
-              price: 9.99,
-              productId: PRODUCT.id,
-            },
+            input: SKU,
           },
         });
 
-        const destroy = await mutate({
+        expect(result).toMatchSnapshot();
+      });
+
+      it("Should delete sku", async () => {
+        const result = await mutate({
           mutation: DELETE_SKU,
           variables: {
-            id: ID,
+            id: SKU_DELETE.id,
           },
         });
 
-        expect({ create, destroy }).toMatchSnapshot();
+        expect(result).toMatchSnapshot();
       });
 
       it("Should update sku", async () => {
@@ -43,7 +40,7 @@ describe("Sku", () => {
           mutation: UPDATE_SKU,
           variables: {
             input: {
-              id: SKU.id,
+              id: SKU_UPDATE.id,
               sku: "S123",
               inventory: 5,
               price: 4.12,

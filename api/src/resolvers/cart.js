@@ -8,7 +8,7 @@ const resolver = {
     sku: async (_source) => _source.getSku(),
   },
   Query: {
-    getCart: async (_source, { id }, { db }) => cartDAO.find(db, id),
+    getCart: async (_source, { id }, { db }) => cartDAO.findOrCreate(db, id),
   },
   Mutation: {
     addCartItem: async (_source, { input }, { db }) => cartDAO.addItem(db, input),

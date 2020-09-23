@@ -1,114 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CartItem Mutation Should create cart, add, update and remove a item to cart 1`] = `
+exports[`CartItem Mutation Should create cart item 1`] = `
 Object {
-  "add": Object {
-    "data": Object {
-      "addCartItem": Object {
-        "id": "321",
-        "items": Array [
-          Object {
-            "cartId": "321",
-            "itemAmount": 99.9,
-            "itemQuantity": 10,
-            "sku": Object {
-              "id": "321",
-              "inventory": 10,
-              "price": 9.99,
-              "sku": "S123",
-            },
-            "skuId": "321",
+  "data": Object {
+    "addCartItem": Object {
+      "id": "n",
+      "items": Array [
+        Object {
+          "cartId": "n",
+          "itemAmount": 100,
+          "itemQuantity": 10,
+          "sku": Object {
+            "id": "l",
+            "inventory": 10,
+            "price": 10,
+            "sku": "111",
           },
+          "skuId": "l",
+        },
+      ],
+      "totalAmount": 100,
+      "totalQuantity": 10,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
         ],
-        "totalAmount": 99.9,
-        "totalQuantity": 10,
-      },
-    },
-    "errors": undefined,
-    "extensions": undefined,
-    "http": Object {
-      "headers": Headers {
-        Symbol(map): Object {
-          "Cache-Control": Array [
-            "max-age=5, public",
-          ],
-        },
       },
     },
   },
-  "get": Object {
-    "data": Object {
-      "getCart": Object {
-        "id": "321",
-        "items": Array [],
-        "totalAmount": 0,
-        "totalQuantity": 0,
-      },
+}
+`;
+
+exports[`CartItem Should delete cart item 1`] = `
+Object {
+  "data": Object {
+    "deleteCartItem": Object {
+      "id": "l",
+      "items": Array [],
+      "totalAmount": 0,
+      "totalQuantity": 0,
     },
-    "errors": undefined,
-    "extensions": undefined,
-    "http": Object {
-      "headers": Headers {
-        Symbol(map): Object {
-          "Cache-Control": Array [
-            "max-age=5, public",
-          ],
-        },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
+        ],
       },
     },
   },
-  "remove": Object {
-    "data": Object {
-      "deleteCartItem": Object {
-        "id": "321",
-        "items": Array [],
-        "totalAmount": 0,
-        "totalQuantity": 0,
-      },
-    },
-    "errors": undefined,
-    "extensions": undefined,
-    "http": Object {
-      "headers": Headers {
-        Symbol(map): Object {
-          "Cache-Control": Array [
-            "max-age=5, public",
-          ],
-        },
-      },
-    },
-  },
-  "update": Object {
-    "data": Object {
-      "updateCartItem": Object {
-        "id": "321",
-        "items": Array [
-          Object {
-            "cartId": "321",
-            "itemAmount": 9.99,
-            "itemQuantity": 1,
-            "sku": Object {
-              "id": "321",
-              "inventory": 10,
-              "price": 9.99,
-              "sku": "S123",
-            },
-            "skuId": "321",
+}
+`;
+
+exports[`CartItem Should update cart item 1`] = `
+Object {
+  "data": Object {
+    "updateCartItem": Object {
+      "id": "m",
+      "items": Array [
+        Object {
+          "cartId": "m",
+          "itemAmount": 10,
+          "itemQuantity": 1,
+          "sku": Object {
+            "id": "m",
+            "inventory": 10,
+            "price": 10,
+            "sku": "111",
           },
-        ],
-        "totalAmount": 9.99,
-        "totalQuantity": 1,
-      },
-    },
-    "errors": undefined,
-    "extensions": undefined,
-    "http": Object {
-      "headers": Headers {
-        Symbol(map): Object {
-          "Cache-Control": Array [
-            "max-age=5, public",
-          ],
+          "skuId": "m",
         },
+        Object {
+          "cartId": "m",
+          "itemAmount": 10,
+          "itemQuantity": 1,
+          "sku": Object {
+            "id": "l",
+            "inventory": 10,
+            "price": 10,
+            "sku": "111",
+          },
+          "skuId": "l",
+        },
+      ],
+      "totalAmount": 20,
+      "totalQuantity": 2,
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
+        ],
       },
     },
   },

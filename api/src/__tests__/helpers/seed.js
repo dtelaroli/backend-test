@@ -1,8 +1,13 @@
 const exec = require("./exec");
 
-const seed = () => {
+const seed = (name) => {
   exec("npx", ["sequelize-cli", "db:seed:undo"]);
-  exec("npx", ["sequelize-cli", "db:seed:all"]);
+
+  if (name) {
+    exec("npx", ["sequelize-cli", "db:seed", "--seed", name]);
+  } else {
+    exec("npx", ["sequelize-cli", "db:seed:all"]);
+  }
 };
 
 module.exports = seed;

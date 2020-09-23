@@ -1,55 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Sku Mutation createProduct Should create and delete product 1`] = `
-Object {
-  "create": Object {
-    "data": Object {
-      "createProduct": Object {
-        "id": "11111111-1111-1111-1111-111111111110",
-        "image": "image1.jpg",
-        "name": "product2",
-      },
-    },
-    "errors": undefined,
-    "extensions": undefined,
-    "http": Object {
-      "headers": Headers {
-        Symbol(map): Object {
-          "Cache-Control": Array [
-            "max-age=5, public",
-          ],
-        },
-      },
-    },
-  },
-  "destroy": Object {
-    "data": Object {
-      "deleteProduct": Object {
-        "message": "Product removed",
-      },
-    },
-    "errors": undefined,
-    "extensions": undefined,
-    "http": Object {
-      "headers": Headers {
-        Symbol(map): Object {
-          "Cache-Control": Array [
-            "max-age=5, public",
-          ],
-        },
-      },
-    },
-  },
-}
-`;
-
-exports[`Sku Mutation createProduct Should update product 1`] = `
+exports[`Sku Mutation createProduct Should create product 1`] = `
 Object {
   "data": Object {
-    "updateProduct": Object {
-      "id": "11111111-1111-1111-1111-111111111113",
+    "createProduct": Object {
+      "id": "g",
       "image": "image1.jpg",
-      "name": "product3",
+      "name": "product1",
     },
   },
   "errors": undefined,
@@ -66,16 +23,35 @@ Object {
 }
 `;
 
-exports[`Sku Query listProducts Should list all products 1`] = `
+exports[`Sku Mutation createProduct Should delete product 1`] = `
 Object {
   "data": Object {
-    "listProducts": Array [
-      Object {
-        "id": "11111111-1111-1111-1111-111111111113",
-        "image": "image1.jpg",
-        "name": "product1",
+    "deleteProduct": Object {
+      "message": "Product removed",
+    },
+  },
+  "errors": undefined,
+  "extensions": undefined,
+  "http": Object {
+    "headers": Headers {
+      Symbol(map): Object {
+        "Cache-Control": Array [
+          "max-age=5, public",
+        ],
       },
-    ],
+    },
+  },
+}
+`;
+
+exports[`Sku Mutation createProduct Should update product 1`] = `
+Object {
+  "data": Object {
+    "updateProduct": Object {
+      "id": "h",
+      "image": "image1.jpg",
+      "name": "product3",
+    },
   },
   "errors": undefined,
   "extensions": undefined,

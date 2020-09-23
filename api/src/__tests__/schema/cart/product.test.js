@@ -1,5 +1,6 @@
 const { seed, mutate, query } = require("../../helpers");
-const { PRODUCT } = require("../../../db/seeders/consts");
+
+const { PRODUCT, PRODUCT_UPDATE, PRODUCT_DELETE } = require("../../../db/seeders/20200923034056-product");
 
 const {
   queries: { LIST_PRODUCTS },
@@ -8,7 +9,7 @@ const {
 
 describe("Sku", () => {
   beforeEach(() => {
-    seed();
+    seed("20200923034056-product");
   });
 
   describe("Query", () => {
@@ -18,7 +19,7 @@ describe("Sku", () => {
           query: LIST_PRODUCTS,
         });
 
-        expect(result).toMatchSnapshot();
+        expect(result.data.listProducts.length).toBeGreaterThan(1);
       });
     });
   });
@@ -27,26 +28,26 @@ describe("Sku", () => {
     const ID = "11111111-1111-1111-1111-111111111110";
 
     describe("createProduct", () => {
-      it("Should create and delete product", async () => {
-        const create = await mutate({
+      it("Should create product", async () => {
+        const result = await mutate({
           mutation: CREATE_PRODUCT,
           variables: {
-            input: {
-              id: ID,
-              name: "product2",
-              image: "image1.jpg",
-            },
+            input: PRODUCT,
           },
         });
 
-        const destroy = await mutate({
+        expect(result).toMatchSnapshot();
+      });
+
+      it("Should delete product", async () => {
+        const result = await mutate({
           mutation: DELETE_PRODUCT,
           variables: {
-            id: ID,
+            id: PRODUCT_DELETE.id,
           },
         });
 
-        expect({ create, destroy }).toMatchSnapshot();
+        expect(result).toMatchSnapshot();
       });
 
       it("Should update product", async () => {
@@ -54,7 +55,7 @@ describe("Sku", () => {
           mutation: UPDATE_PRODUCT,
           variables: {
             input: {
-              id: PRODUCT.id,
+              id: PRODUCT_UPDATE.id,
               name: "product3",
               image: "image1.jpg",
             },

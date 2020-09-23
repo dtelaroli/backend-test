@@ -1,14 +1,14 @@
-const { CART } = require("../../../db/seeders/consts");
 const {
   queries: { GET_CART },
 } = require("../graphql");
+const { CART } = require("../../../db/seeders/20200919151449-cart");
 const { seed, query } = require("../../helpers");
 
 describe("Cart", () => {
   beforeEach(() => {
-    seed();
+    seed("20200919151449-cart");
   });
-  
+
   describe("Query", () => {
     describe("getCart", () => {
       it("Should return cart if exists", async () => {
