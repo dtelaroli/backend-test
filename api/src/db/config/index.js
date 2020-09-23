@@ -1,5 +1,6 @@
-const { logger } = require("../../utils");
+if (process.env.NODE_ENV === "development") require("dotenv/config");
 
+const { logger } = require("../../utils");
 const { DB_HOST: host, DB_NAME: database, DB_USERNAME: username, DB_PASSWORD: password } = process.env;
 
 const defaultConfig = {

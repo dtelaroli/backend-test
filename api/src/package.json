@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node -r dotenv/config app.js",
     "test": "jest",
-    "dev": "NODE_ENV=development nodemon --inspect -r dotenv-flow/config app.js",
-    "test:watch": "jest --watchAll"
+    "dev": "nodemon --inspect app.js",
+    "test:dev": "jest --watchAll",
+    "coverage": "jest --collect-coverage"
   },
   "jest": {
     "testEnvironment": "node",
@@ -17,9 +18,6 @@
     "testTimeout": 30000,
     "coveragePathIgnorePatterns": [
       "/node_modules/"
-    ],
-    "setupFiles": [
-      "dotenv-flow/config"
     ],
     "setupFilesAfterEnv": [
       "./db/config/prepare.js"

@@ -1,24 +1,28 @@
 version: "3"
 
 services:
-  # api:
-  #   image: node:lts
-  #   restart: unless-stopped
-  #   ports:
-  #     - 4000:4000
-  #   volumes:
-  #     - ./src:/home/node/app
-  #   environment:
-  #     - DB_URL=http://db:8000
-  #   user: "501:0"
-  #   working_dir: /home/node/app
-  #   command:
-  #     - npm
-  #     - run
-  #     - dev
-  #   depends_on: 
-  #     - db
-  #     # - es
+  api:
+    image: node:lts
+    restart: unless-stopped
+    ports:
+      - 4000:4000
+    volumes:
+      - ./src:/home/node/app
+    environment:
+      - NODE_ENV=development
+      - DB_HOST=db
+      - DB_NAME=example
+      - DB_USERNAME=example
+      - DB_PASSWORD=example
+      - DEBUG=true
+    user: "501:0"
+    working_dir: /home/node/app
+    command:
+      - npm
+      - run
+      - dev
+    depends_on:
+      - db
 
   db:
     image: postgres
@@ -37,7 +41,7 @@ services:
     restart: unless-stopped
     ports:
       - 8080:8080
-    depends_on: 
+    depends_on:
       - db
 
 volumes:

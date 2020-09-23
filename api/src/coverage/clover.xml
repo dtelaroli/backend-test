@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1600904808642" clover="3.2.0">
+  <project timestamp="1600904808642" name="All files">
+    <metrics statements="309" coveredstatements="278" conditionals="38" coveredconditionals="32" methods="62" coveredmethods="48" elements="409" coveredelements="358" complexity="0" loc="309" ncloc="309" packages="16" files="45" classes="45"/>
+    <package name="__tests__.helpers">
+      <metrics statements="31" coveredstatements="29" conditionals="4" coveredconditionals="2" methods="3" coveredmethods="3"/>
+      <file name="exec.js" path="/Users/dtelaroli/my/backend-test/api/src/__tests__/helpers/exec.js">
+        <metrics statements="8" coveredstatements="7" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="52" type="stmt"/>
+        <line num="8" count="52" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+      </file>
+      <file name="gql-client.js" path="/Users/dtelaroli/my/backend-test/api/src/__tests__/helpers/gql-client.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="8" count="5" type="stmt"/>
+      </file>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/__tests__/helpers/index.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+      </file>
+      <file name="migrate.js" path="/Users/dtelaroli/my/backend-test/api/src/__tests__/helpers/migrate.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+      </file>
+      <file name="seed.js" path="/Users/dtelaroli/my/backend-test/api/src/__tests__/helpers/seed.js">
+        <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="21" type="stmt"/>
+        <line num="6" count="21" type="cond" truecount="1" falsecount="1"/>
+        <line num="7" count="21" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="__tests__.schema.graphql">
+      <metrics statements="18" coveredstatements="18" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/__tests__/schema/graphql/index.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="2" count="4" type="stmt"/>
+        <line num="4" count="4" type="stmt"/>
+      </file>
+      <file name="mutations.js" path="/Users/dtelaroli/my/backend-test/api/src/__tests__/schema/graphql/mutations.js">
+        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="13" count="4" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="59" count="4" type="stmt"/>
+        <line num="67" count="4" type="stmt"/>
+        <line num="89" count="4" type="stmt"/>
+        <line num="111" count="4" type="stmt"/>
+        <line num="133" count="4" type="stmt"/>
+      </file>
+      <file name="queries.js" path="/Users/dtelaroli/my/backend-test/api/src/__tests__/schema/graphql/queries.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="4" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="36" count="4" type="stmt"/>
+      </file>
+    </package>
+    <package name="config">
+      <metrics statements="14" coveredstatements="12" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="1"/>
+      <file name="gql.js" path="/Users/dtelaroli/my/backend-test/api/src/config/gql.js">
+        <metrics statements="12" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="2" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="18" count="12" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+      </file>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/config/index.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="db.config">
+      <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/db/config/index.js">
+        <metrics statements="6" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="db.dao">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/db/dao/index.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="db.dao.cart">
+      <metrics statements="28" coveredstatements="28" conditionals="6" coveredconditionals="5" methods="6" coveredmethods="6"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/db/dao/cart/index.js">
+        <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="15" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+      </file>
+      <file name="operation.js" path="/Users/dtelaroli/my/backend-test/api/src/db/dao/cart/operation.js">
+        <metrics statements="17" coveredstatements="17" conditionals="4" coveredconditionals="3" methods="3" coveredmethods="3"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="10" type="stmt"/>
+        <line num="6" count="10" type="stmt"/>
+        <line num="13" count="10" type="stmt"/>
+        <line num="15" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="7" type="stmt"/>
+        <line num="18" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="28" count="8" type="stmt"/>
+        <line num="29" count="8" type="stmt"/>
+        <line num="30" count="8" type="stmt"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="38" count="8" type="stmt"/>
+        <line num="42" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="db.dao.cart.operations">
+      <metrics statements="20" coveredstatements="20" conditionals="4" coveredconditionals="4" methods="3" coveredmethods="3"/>
+      <file name="add.js" path="/Users/dtelaroli/my/backend-test/api/src/db/dao/cart/operations/add.js">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+      </file>
+      <file name="delete.js" path="/Users/dtelaroli/my/backend-test/api/src/db/dao/cart/operations/delete.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+      </file>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/db/dao/cart/operations/index.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+      </file>
+      <file name="update.js" path="/Users/dtelaroli/my/backend-test/api/src/db/dao/cart/operations/update.js">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="db.models">
+      <metrics statements="49" coveredstatements="48" conditionals="7" coveredconditionals="5" methods="16" coveredmethods="15"/>
+      <file name="cart-item.js" path="/Users/dtelaroli/my/backend-test/api/src/db/models/cart-item.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+      </file>
+      <file name="cart.js" path="/Users/dtelaroli/my/backend-test/api/src/db/models/cart.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+      </file>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/db/models/index.js">
+        <metrics statements="20" coveredstatements="19" conditionals="7" coveredconditionals="5" methods="4" coveredmethods="3"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+        <line num="7" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="19" count="25" type="cond" truecount="3" falsecount="0"/>
+        <line num="22" count="20" type="stmt"/>
+        <line num="23" count="20" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="20" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="20" type="stmt"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+      </file>
+      <file name="product.js" path="/Users/dtelaroli/my/backend-test/api/src/db/models/product.js">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+      </file>
+      <file name="sku.js" path="/Users/dtelaroli/my/backend-test/api/src/db/models/sku.js">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+        <line num="50" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="db.seeders">
+      <metrics statements="60" coveredstatements="36" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <file name="20200919151449-cart.js" path="/Users/dtelaroli/my/backend-test/api/src/db/seeders/20200919151449-cart.js">
+        <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+      </file>
+      <file name="20200922000936-cart-item.js" path="/Users/dtelaroli/my/backend-test/api/src/db/seeders/20200922000936-cart-item.js">
+        <metrics statements="18" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+      </file>
+      <file name="20200922001324-cart-dao.js" path="/Users/dtelaroli/my/backend-test/api/src/db/seeders/20200922001324-cart-dao.js">
+        <metrics statements="20" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+      </file>
+      <file name="20200923032202-sku.js" path="/Users/dtelaroli/my/backend-test/api/src/db/seeders/20200923032202-sku.js">
+        <metrics statements="10" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+      </file>
+      <file name="20200923034056-product.js" path="/Users/dtelaroli/my/backend-test/api/src/db/seeders/20200923034056-product.js">
+        <metrics statements="7" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="db.seeders.consts">
+      <metrics statements="7" coveredstatements="7" conditionals="13" coveredconditionals="13" methods="5" coveredmethods="5"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/db/seeders/consts/index.js">
+        <metrics statements="7" coveredstatements="7" conditionals="13" coveredconditionals="13" methods="5" coveredmethods="5"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="11" count="6" type="cond" truecount="3" falsecount="0"/>
+        <line num="19" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="27" count="8" type="cond" truecount="3" falsecount="0"/>
+        <line num="37" count="5" type="cond" truecount="5" falsecount="0"/>
+        <line num="47" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="db.utils">
+      <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/db/utils/index.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+      </file>
+      <file name="transactional.js" path="/Users/dtelaroli/my/backend-test/api/src/db/utils/transactional.js">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="10" type="stmt"/>
+        <line num="3" count="10" type="stmt"/>
+        <line num="4" count="10" type="stmt"/>
+        <line num="5" count="8" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="resolvers">
+      <metrics statements="31" coveredstatements="30" conditionals="0" coveredconditionals="0" methods="15" coveredmethods="14"/>
+      <file name="cart.js" path="/Users/dtelaroli/my/backend-test/api/src/resolvers/cart.js">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="6"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+      </file>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/resolvers/index.js">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="9" count="5" type="stmt"/>
+      </file>
+      <file name="product.js" path="/Users/dtelaroli/my/backend-test/api/src/resolvers/product.js">
+        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="4"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+      </file>
+      <file name="scalar.js" path="/Users/dtelaroli/my/backend-test/api/src/resolvers/scalar.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+      </file>
+      <file name="sku.js" path="/Users/dtelaroli/my/backend-test/api/src/resolvers/sku.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="schema">
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/schema/index.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="schema.cart">
+      <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="cart-item.js" path="/Users/dtelaroli/my/backend-test/api/src/schema/cart/cart-item.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="33" count="5" type="stmt"/>
+      </file>
+      <file name="cart.js" path="/Users/dtelaroli/my/backend-test/api/src/schema/cart/cart.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+      </file>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/schema/cart/index.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
+        <line num="6" count="5" type="stmt"/>
+      </file>
+      <file name="product.js" path="/Users/dtelaroli/my/backend-test/api/src/schema/cart/product.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+      </file>
+      <file name="sku.js" path="/Users/dtelaroli/my/backend-test/api/src/schema/cart/sku.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="schema.global">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/schema/global/index.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="7" coveredstatements="7" conditionals="3" coveredconditionals="2" methods="0" coveredmethods="0"/>
+      <file name="index.js" path="/Users/dtelaroli/my/backend-test/api/src/utils/index.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="3" count="5" type="stmt"/>
+      </file>
+      <file name="logger.js" path="/Users/dtelaroli/my/backend-test/api/src/utils/logger.js">
+        <metrics statements="5" coveredstatements="5" conditionals="3" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="5" type="stmt"/>
+        <line num="2" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="3" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="7" count="5" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
