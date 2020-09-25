@@ -1,3 +1,3 @@
-const { migrate } = require("./migrate");
+const migrate = require("./migrate");
 
 migrate();
