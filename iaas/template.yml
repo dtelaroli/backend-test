@@ -114,6 +114,14 @@ Resources:
       DBSubnetGroupName: !Ref DBSubnets
       VpcSecurityGroupIds: !Ref vpcSecurityGroupIds
 
+  DBEndpoint:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: /config/backend-test/db-endpoint
+      Description: Aurora PostgreSQL Serverless Endpoint
+      Type: String
+      Value: !GetAtt DB.Endpoint.Address
+
   DBSubnets:
     Type: AWS::RDS::DBSubnetGroup
     Properties:

@@ -5,6 +5,10 @@ env:
     ENV: ${ENV}
     NODE_ENV: ${NODE_ENV}
     REGION: ${AWS_REGION}
+    DB_USERNAME: ${DB_USERNAME}
+  parameter-store:
+    DB_HOST: /config/backend-test/db-endpoint
+    DB_PASSWORD: /config/backend-test/db-password
 
 phases:
   install:
