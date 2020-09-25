@@ -279,6 +279,7 @@ Resources:
                   - "codebuild:BatchGetBuilds"
                 Resource:
                   - !GetAtt Build.Arn
+                  - !GetAtt Migrate.Arn
               - Action:
                   - "s3:ListBucket"
                   - "s3:GetBucketVersioning"

@@ -26,4 +26,4 @@ phases:
 artifacts:
   files:
     - packaged-template.yml
-    - api/src
+    - api/src/**/*
