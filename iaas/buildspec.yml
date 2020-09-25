@@ -11,17 +11,19 @@ phases:
     runtime-versions:
       python: 3.8
     commands:
+      - set -e
       - pip install --upgrade pip
       - pip install pipenv --user
       - pipenv install awscli aws-sam-cli --skip-lock
   build:
     commands:
-      - pipenv run sam build
-      - cd src
+      - cd api/src
+      - npm install
+      - find ./node_modules/* -mtime +10950 -exec touch {} \;
       - npm test
-      - npx sequelize-cli db:migrate
       - cd -
-      - pipenv run sam package --template-file .aws-sam/build/template.yaml --s3-bucket ${BUCKET} --output-template-file packaged-template.yml
+      - pipenv run sam package --template-file iaas/template.yml --s3-bucket ${BUCKET} --output-template-file packaged-template.yml
 artifacts:
   files:
     - packaged-template.yml
+    - api/src

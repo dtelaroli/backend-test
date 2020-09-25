@@ -20,7 +20,7 @@
       "/node_modules/"
     ],
     "setupFilesAfterEnv": [
-      "./db/config/prepare.js"
+      "<rootDir>/__tests__/helpers/prepare.js"
     ],
     "silent": true
   },

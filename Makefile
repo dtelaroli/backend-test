@@ -7,7 +7,11 @@ db:
 # Requires make db
 # Create file ~/.envs/default.json to overrides environment variables
 sam:
-	cd iaas && sam local start-api -n ~/.envs/default.json
+	cd iaas && sam local start-api -n ../.envs/default.json
+
+# Requires make db
+migrate-dev:
+	cd iaas && sam local invoke MigrateFunction -n ../.envs/default.json
 
 dev:
 	cd api/src && npm run dev
@@ -32,7 +36,7 @@ deploy-dev:
 	cd iaas && aws-vault exec my-account-dev -- sh deploy-dev.sh
 
 cleanup-dev:
-	cd iaas && aws cloudformation delete-stack --stack-name backend-test
+	cd iaas && aws-vault exec my-account-dev -- aws cloudformation delete-stack --stack-name backend-test
 
 fix-npm-bug:
 	cd api/src && find ./node_modules/* -mtime +10950 -exec touch {} \;

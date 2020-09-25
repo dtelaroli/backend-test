@@ -1,0 +1,18 @@
+version: 0.2
+
+env:
+  variables:
+    ENV: ${ENV}
+    NODE_ENV: ${NODE_ENV}
+    REGION: ${AWS_REGION}
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - set -e
+  build:
+    commands:
+      - cd api/src
+      - npx sequelize-cli db:migrate
