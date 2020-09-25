@@ -1,0 +1,147 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Backend Test
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 120
+
+Parameters:
+  env:
+    Description: Environment
+    Type: String
+    Default: dev
+  nodeEnv:
+    Description: NODE_ENV var
+    Type: String
+    Default: development
+  vpcSecurityGroupIds:
+    Description: Security Groups
+    Type: CommaDelimitedList
+  vpcSubnetIds:
+    Description: Subnet Ids
+    Type: CommaDelimitedList
+  dbName:
+    Description: DB Name
+    Type: String
+    Default: example
+  dbUsername:
+    Description: DB Username
+    Type: String
+    Default: example
+  dbPassword:
+    Description: DB Password
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /config/backend-test/db-password
+  dbMasterUsername:
+    Description: DB Master Username
+    Type: String
+    Default: example
+  dbMasterPassword:
+    Description: DB Password
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /config/backend-test/db-master-password
+  debug:
+    Description: Debug
+    Type: String
+    Default: "true"
+  apolloKey:
+    Description: Apollo Cloud Key
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /config/backend-test/apollo-key
+
+Resources:
+  API:
+    Type: AWS::Serverless::Api
+    Properties:
+      Cors: "'*'"
+      StageName: !Sub ${env}
+
+  ApolloFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: ../api/src
+      Handler: graphql.handler
+      Runtime: nodejs12.x
+      VpcConfig:
+        SecurityGroupIds: !Ref vpcSecurityGroupIds
+        SubnetIds: !Ref vpcSubnetIds
+      Events:
+        ProxyApiGreedy:
+          Type: Api
+          Properties:
+            RestApiId: !Ref API
+            Path: /graphql
+            Method: ANY
+      Environment:
+        Variables:
+          ENV: !Ref env
+          NODE_ENV: !Ref nodeEnv
+          APOLLO_KEY: !Ref apolloKey
+          DB_HOST: !GetAtt DB.Endpoint.Address
+          DB_NAME: !Ref dbName
+          DB_USERNAME: !Ref dbUsername
+          DB_PASSWORD: !Ref dbPassword
+          DEBUG: !Ref debug
+
+  DB:
+    Type: AWS::RDS::DBCluster
+    Properties:
+      BackupRetentionPeriod: 14
+      DatabaseName: !Ref dbName
+      DeletionProtection: false
+      EnableHttpEndpoint: false
+      EnableIAMDatabaseAuthentication: false
+      Engine: aurora-postgresql
+      EngineMode: serverless
+      EngineVersion: 10.7
+      KmsKeyId: !Ref KMS
+      MasterUsername: !Ref dbMasterUsername
+      MasterUserPassword: !Ref dbMasterPassword
+      PreferredBackupWindow: 02:00-04:00
+      PreferredMaintenanceWindow: Sun:04:00-Sun:06:00
+      RestoreType: copy-on-write
+      ScalingConfiguration:
+        AutoPause: true
+        SecondsUntilAutoPause: 3600
+        MaxCapacity: 4
+        MinCapacity: 2
+      SourceRegion: !Ref AWS::Region
+      StorageEncrypted: true
+      UseLatestRestorableTime: true
+      DBSubnetGroupName: !Ref DBSubnets
+      VpcSecurityGroupIds: !Ref vpcSecurityGroupIds
+
+  DBSubnets:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: DB Subnet Group for Aurora Serverless
+      DBSubnetGroupName: postgresserverless
+      SubnetIds: !Ref vpcSubnetIds
+
+  KMS:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: Aurora Key
+      Enabled: true
+      EnableKeyRotation: "false"
+      KeyPolicy:
+        Version: 2012-10-17
+        Id: key-default-1
+        Statement:
+          - Sid: "Allow administration of the key"
+            Effect: Allow
+            Principal:
+              AWS: !Sub "arn:aws:iam::${AWS::AccountId}:root"
+            Action:
+              - "kms:*"
+            Resource: "*"
+      PendingWindowInDays: "7"
+
+Outputs:
+  AuroraDBEndpoint:
+    Value: !GetAtt DB.Endpoint.Address
+  ApiEndpoint:
+    Value: !Sub "https://${API}.execute-api.${AWS::Region}.amazonaws.com/${env}/graphql"

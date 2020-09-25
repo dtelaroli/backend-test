@@ -3,12 +3,15 @@ const typeDefs = require("../schema");
 const resolvers = require("../resolvers");
 const db = require("../db/models");
 const { logger } = require("../utils");
-const { DEBUG = false } = process.env;
-const trace = DEBUG === "true";
+const { ENV, REPORT_SCHEMA = false, DEBUG = false } = process.env;
+const tracing = DEBUG === "true";
+const path = `/${ENV}/graphql`;
 
 const config = {
   typeDefs,
   resolvers,
+  path,
+  subscriptionsPath: path,
   cors: {
     // Cors allowing all origins
     origin: "*",
@@ -39,10 +42,12 @@ const config = {
   // If you'd like to have GraphQL Playground and introspection enabled in production,
   // the `playground` and `introspection` options must be set explicitly to `true`.
   introspection: true,
-  playground: trace,
-  tracing: trace,
+  playground: {
+    endpoint: path,
+  },
+  tracing,
   engine: {
-    reportSchema: trace,
+    reportSchema: REPORT_SCHEMA,
     graphVariant: "current",
   },
 };
