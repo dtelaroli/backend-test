@@ -12,6 +12,7 @@ env:
 
 phases:
   install:
+    runtime-versions:
       nodejs: latest
     commands:
       - set -e
