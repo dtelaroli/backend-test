@@ -218,7 +218,7 @@ Resources:
               Configuration:
                 ProjectName: !Ref Migrate
               InputArtifacts:
-                - Name: BuildArtifact
+                - Name: SourceArtifact
               RunOrder: "1"
 
   BuildRole:

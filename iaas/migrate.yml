@@ -12,11 +12,11 @@ env:
 
 phases:
   install:
-    runtime-versions:
-      python: 3.8
+      nodejs: latest
     commands:
       - set -e
   build:
     commands:
       - cd api/src
+      - npm install
       - npx sequelize-cli db:migrate
