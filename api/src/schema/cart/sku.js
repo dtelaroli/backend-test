@@ -1,9 +1,18 @@
 const { gql } = require("apollo-server-core");
 
 const type = gql`
+  """
+  Sku it's an stock keeping unit, used to control the stock
+  """
   type Sku {
     id: ID!
+    """
+    Sku Code
+    """
     sku: String!
+    """
+    Product quantity available
+    """
     inventory: Int!
     price: Float!
     createdAt: DateTime

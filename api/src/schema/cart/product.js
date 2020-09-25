@@ -1,9 +1,15 @@
 const { gql } = require("apollo-server-core");
 
 const type = gql`
+  """
+   A Product is a catalog item
+  """
   type Product {
     id: ID!
     name: String!
+    """
+     S3 image path
+    """
     image: String!
     createdAt: DateTime
     updatedAt: DateTime

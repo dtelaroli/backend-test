@@ -25,5 +25,4 @@ phases:
       - pipenv run sam package --template-file iaas/template.yml --s3-bucket ${BUCKET} --output-template-file packaged-template.yml
 artifacts:
   files:
-    - packaged-template.yml
-    - api/src/**/*
+    - "**/*"
