@@ -9,7 +9,7 @@
 
 # VixCommerce API
 
-This sample project includes a E-Commerce GraphQL API.
+This sample project includes an E-Commerce GraphQL API.
 
 ## Tools used:
 
