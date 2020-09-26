@@ -7,8 +7,7 @@
     "start": "node -r dotenv/config app.js",
     "test": "jest",
     "dev": "nodemon --inspect app.js",
-    "test:dev": "jest --watchAll",
-    "coverage": "jest --collect-coverage"
+    "test:dev": "jest --watchAll --collect-coverage"
   },
   "jest": {
     "testEnvironment": "node",

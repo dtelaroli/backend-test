@@ -1,4 +1,4 @@
-# Documentation
+# GraphQL API
 
 1. [Home](../README.md)
 2. [Architecture](architecture.md)
@@ -7,9 +7,7 @@
 6. GraphQL API
 7. [Roadmap](roadmap.md)
 
-## GraphQL API
-
-A GraphQL API is a REST compatible service which provides to developers build a your own desired interface and pretty tools to understand and test the endpoint.
+A GraphQL API is a REST (superset) compatible service which provides to developers build a your own desired interface and pretty tools to understand and test the endpoint.
 
 This API has a built-in playground and documentation available to easy test and learn the data model.
 
