@@ -1,0 +1,23 @@
+version: 0.2
+
+env:
+  variables:
+    ENV: ${ENV}
+    NODE_ENV: ${NODE_ENV}
+    REGION: ${AWS_REGION}
+    DB_USERNAME: ${DB_USERNAME}
+  parameter-store:
+    DB_HOST: /config/backend-test/db-endpoint
+    DB_PASSWORD: /config/backend-test/db-password
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: latest
+    commands:
+      - set -e
+  build:
+    commands:
+      - cd api/src
+      - npm install
+      - npx sequelize-cli db:migrate

@@ -34,8 +34,187 @@ Parameters:
     Type: "AWS::SSM::Parameter::Value<String>"
     Description: GitHub Token
     Default: /config/global/github-token
+  vpcSecurityGroupIds:
+    Description: Security Groups
+    Type: String
+  vpcSubnetIds:
+    Description: Subnet Ids
+    Type: String
+  vpcId:
+    Description: VPC Id
+    Type: String
+  dbPassword:
+    Description: DB Password
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /config/backend-test/db-password
 
 Resources:
+  Build:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub ${AWS::StackName}-${env}-pipepline
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: iaas/buildspec.yml
+        GitCloneDepth: 1
+      Artifacts:
+        Type: CODEPIPELINE
+      Description: Build Sam Project
+      ServiceRole: !GetAtt BuildRole.Arn
+      TimeoutInMinutes: 10
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:4.0
+        PrivilegedMode: false
+        EnvironmentVariables:
+          - Type: PLAINTEXT
+            Name: ENV
+            Value: !Ref env
+          - Type: PLAINTEXT
+            Name: NODE_ENV
+            Value: test
+          - Type: PLAINTEXT
+            Name: REGION
+            Value: !Ref AWS::Region
+          - Type: PLAINTEXT
+            Name: BUCKET
+            Value: !Ref ArtifactStoreBucket
+          - Type: PLAINTEXT
+            Name: SAM_CLI_TELEMETRY
+            Value: 0
+
+  Migrate:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      Name: !Sub ${AWS::StackName}-${env}-migrate
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: iaas/migrate.yml
+        GitCloneDepth: 1
+      Artifacts:
+        Type: CODEPIPELINE
+      Description: Build Sam Project
+      ServiceRole: !GetAtt BuildRole.Arn
+      TimeoutInMinutes: 10
+      VpcConfig:
+        SecurityGroupIds: !Split [",", !Ref vpcSecurityGroupIds]
+        Subnets: !Split [",", !Ref vpcSubnetIds]
+        VpcId: !Ref vpcId
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/standard:4.0
+        PrivilegedMode: false
+        EnvironmentVariables:
+          - Type: PLAINTEXT
+            Name: ENV
+            Value: !Ref env
+          - Type: PLAINTEXT
+            Name: NODE_ENV
+            Value: !Ref nodeEnv
+          - Type: PLAINTEXT
+            Name: REGION
+            Value: !Ref AWS::Region
+          - Type: PLAINTEXT
+            Name: BUCKET
+            Value: !Ref ArtifactStoreBucket
+          - Type: PLAINTEXT
+            Name: DB_USERNAME
+            Value: example
+
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      ArtifactStore:
+        Type: S3
+        Location:
+          Ref: ArtifactStoreBucket
+      RoleArn: !GetAtt PipelineRole.Arn
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: Source
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Provider: GitHub
+                Version: "1"
+              Configuration:
+                OAuthToken: !Ref githubToken
+                Owner: !Ref repoOwner
+                Repo: !Ref repoName
+                Branch: !Ref branch
+                PollForSourceChanges: true
+              OutputArtifacts:
+                - Name: SourceArtifact
+              RunOrder: "1"
+        - Name: Build
+          Actions:
+            - Name: Build
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: "1"
+              Configuration:
+                ProjectName: !Ref Build
+              InputArtifacts:
+                - Name: SourceArtifact
+              OutputArtifacts:
+                - Name: BuildArtifact
+              RunOrder: "1"
+        - Name: Deploy
+          Actions:
+            - Name: CreateChangeSet
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: CloudFormation
+                Version: "1"
+              InputArtifacts:
+                - Name: BuildArtifact
+              Configuration:
+                ActionMode: CHANGE_SET_REPLACE
+                StackName: !Sub ${AWS::StackName}-${env}
+                ChangeSetName: !Sub ${AWS::StackName}-update
+                RoleArn: !GetAtt CloudFormationRole.Arn
+                TemplatePath: "BuildArtifact::packaged-template.yml"
+                Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
+                ParameterOverrides: !Sub
+                  - |-
+                    {
+                      "vpcSecurityGroupIds" : "${vpcSecurityGroupIds}",
+                      "vpcSubnetIds" : "${vpcSubnetIds}"
+                    }
+                  - { vpcSecurityGroupIds: !Ref vpcSecurityGroupIds, vpcSubnetIds: !Ref vpcSubnetIds }
+              RunOrder: 1
+            - Name: ExecuteChangeSet
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: CloudFormation
+                Version: "1"
+              Configuration:
+                ActionMode: CHANGE_SET_EXECUTE
+                StackName: !Sub ${AWS::StackName}-${env}
+                ChangeSetName: !Sub ${AWS::StackName}-update
+                RoleArn: !GetAtt CloudFormationRole.Arn
+              RunOrder: 2
+        - Name: Migrate
+          Actions:
+            - Name: Migrate
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: "1"
+              Configuration:
+                ProjectName: !Ref Migrate
+              InputArtifacts:
+                - Name: SourceArtifact
+              RunOrder: "1"
+
   BuildRole:
     Type: "AWS::IAM::Role"
     Properties:
@@ -59,13 +238,7 @@ Resources:
                 Resource: "*"
               - Effect: Allow
                 Action:
-                  - "ec2:CreateNetworkInterface"
-                  - "ec2:DescribeDhcpOptions"
-                  - "ec2:DescribeNetworkInterfaces"
-                  - "ec2:DeleteNetworkInterface"
-                  - "ec2:DescribeSubnets"
-                  - "ec2:DescribeSecurityGroups"
-                  - "ec2:DescribeVpcs"
+                  - "ec2:*"
                 Resource: "*"
               - Action:
                   - "ssm:GetParameters"
@@ -77,46 +250,6 @@ Resources:
                 Resource:
                   - !GetAtt ArtifactStoreBucket.Arn
                   - !Sub ${ArtifactStoreBucket.Arn}/*
-
-  Build:
-    Type: AWS::CodeBuild::Project
-    Properties:
-      Name:
-        Fn::Join:
-          - "-"
-          - - !Sub AWS::StackName
-            - !Ref env
-            - pipepline
-      Artifacts:
-        Type: CODEPIPELINE
-      Description: Build Sam Project
-      Environment:
-        Type: LINUX_CONTAINER
-        ComputeType: BUILD_GENERAL1_SMALL
-        Image: aws/codebuild/standard:4.0
-        PrivilegedMode: false
-        EnvironmentVariables:
-          - Type: PLAINTEXT
-            Name: ENV
-            Value: !Ref env
-          - Type: PLAINTEXT
-            Name: NODE_ENV
-            Value: !Ref nodeEnv
-          - Type: PLAINTEXT
-            Name: REGION
-            Value: !Ref AWS:Region
-          - Type: PLAINTEXT
-            Name: BUCKET
-            Value: !Ref ArtifactStoreBucket
-          - Type: PLAINTEXT
-            Name: SAM_CLI_TELEMETRY
-            Value: 0
-
-      ServiceRole: !GetAtt BuildRole.Arn
-      Source:
-        Type: CODEPIPELINE
-        GitCloneDepth: 1
-      TimeoutInMinutes: 10
 
   PipelineRole:
     Type: AWS::IAM::Role
@@ -144,6 +277,7 @@ Resources:
                   - "codebuild:BatchGetBuilds"
                 Resource:
                   - !GetAtt Build.Arn
+                  - !GetAtt Migrate.Arn
               - Action:
                   - "s3:ListBucket"
                   - "s3:GetBucketVersioning"
@@ -157,10 +291,6 @@ Resources:
                 Resource:
                   - !GetAtt ArtifactStoreBucket.Arn
                   - !Sub ${ArtifactStoreBucket.Arn}/*
-              - Action:
-                  - codestar-connections:UseConnection
-                Effect: Allow
-                Resource: !Ref codestarConnection
               - Action:
                   - cloudformation:DescribeStacks
                   - cloudformation:DescribeChangeSet
@@ -191,76 +321,6 @@ Resources:
                   - "*"
                 Effect: Allow
                 Resource: "*"
-
-  Pipeline:
-    Type: AWS::CodePipeline::Pipeline
-    Properties:
-      ArtifactStore:
-        Type: S3
-        Location:
-          Ref: ArtifactStoreBucket
-      RoleArn: !GetAtt PipelineRole.Arn
-      Stages:
-        - Name: Source
-          Actions:
-            - Name: Source
-              ActionTypeId:
-                Category: Source
-                Owner: ThirdParty
-                Provider: GitHub
-                Version: "1"
-              Configuration:
-                OAuthToken: !Ref githubToken
-                Owner: !Ref repoOwner
-                Repo: !Ref repoName
-                Branch: !Ref branch
-                PollForSourceChanges: false
-              RunOrder: "1"
-        - Name: Build
-          Actions:
-            - Name: Build
-              ActionTypeId:
-                Category: Build
-                Owner: AWS
-                Provider: CodeBuild
-                Version: "1"
-              Configuration:
-                ProjectName: !Ref Build
-              InputArtifacts:
-                - Name: SourceArtifact
-              OutputArtifacts:
-                - Name: BuildArtifact
-              RunOrder: "1"
-        - Name: Deploy
-          Actions:
-            - Name: CreateChangeSet
-              ActionTypeId:
-                Category: Deploy
-                Owner: AWS
-                Provider: CloudFormation
-                Version: "1"
-              InputArtifacts:
-                - Name: BuildArtifact
-              Configuration:
-                ActionMode: CHANGE_SET_REPLACE
-                StackName: !Sub ${AWS::StackName}-${env}-sam-app
-                ChangeSetName: !Sub ${AWS::StackName}-update
-                RoleArn: !GetAtt CloudFormationRole.Arn
-                TemplatePath: "BuildArtifact::packaged-template.yml"
-                Capabilities: CAPABILITY_IAM,CAPABILITY_AUTO_EXPAND
-              RunOrder: 1
-            - Name: ExecuteChangeSet
-              ActionTypeId:
-                Category: Deploy
-                Owner: AWS
-                Provider: CloudFormation
-                Version: "1"
-              Configuration:
-                ActionMode: CHANGE_SET_EXECUTE
-                StackName: !Sub ${AWS::StackName}-${env}-sam-app
-                ChangeSetName: !Sub ${AWS::StackName}-update
-                RoleArn: !GetAtt CloudFormationRole.Arn
-              RunOrder: 2
 
   ArtifactStoreBucket:
     Type: AWS::S3::Bucket

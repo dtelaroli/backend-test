@@ -2,15 +2,14 @@
 
 1. Home
 2. [Architecture](docs/architecture.md)
-3. [Pipelines](docs/pipelines.md)
+3. [DevOps](docs/devops.md)
 4. [Using](docs/using.md)
-5. [Screens](docs/screens.md)
 6. [GraphQL API](docs/graphql.md)
 7. [Roadmap](docs/roadmap.md)
 
 # VixCommerce API
 
-This sample project includes a E-Commerce GraphQL API.
+This sample project includes an E-Commerce GraphQL API.
 
 ## Tools used:
 
@@ -31,13 +30,16 @@ This sample project includes a E-Commerce GraphQL API.
 ### CLI
 
 - [aws-vault (99designs)](https://github.com/99designs/aws-vault)
-- [npm](https://yarnpkg.com/cli/install)
+- [node npm](https://nodejs.org/en/download/)
+- [sam](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
 
 ### GraphQL API
 
 - [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
+- [Apollo AWS Lambda](https://www.npmjs.com/package/apollo-server-lambda)
 - [NodeJS 12](https://nodejs.org/en/)
 - [Sequelize ORM](https://sequelize.org/master/)
+- [Aurora PostgreSQL Serverless](https://docs.amazonaws.cn/en_us/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 
 ### Development
 
@@ -45,4 +47,4 @@ This sample project includes a E-Commerce GraphQL API.
 - [Docker Compose](https://docs.docker.com/compose/)
 - [Jest](https://jestjs.io/docs/en/getting-started)
 
-[Next page](docs/architecture.md)
+[Next - Architecture](docs/architecture.md)

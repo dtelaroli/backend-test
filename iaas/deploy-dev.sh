@@ -9,5 +9,6 @@ sam deploy --s3-bucket backent-dev-test --stack-name backend-test \
     env=dev \
     nodeEnv=development \
     branch=develop \
-    vpcSecurityGroupIds="sg-04d4376ab9eccd7e9" \
-    vpcSubnetIds="subnet-04d90ccf2cdc37f35,subnet-0cbcaffb2f32401dd"
+    vpcSecurityGroupIds="sg-0a731649b0f535aee" \
+    vpcSubnetIds="subnet-0ef36ed795ea0f74e,subnet-0556410c637112342" \
+    vpcId=vpc-0df6ff91f6f01e080

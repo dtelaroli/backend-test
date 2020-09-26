@@ -7,8 +7,7 @@
     "start": "node -r dotenv/config app.js",
     "test": "jest",
     "dev": "nodemon --inspect app.js",
-    "test:dev": "jest --watchAll",
-    "coverage": "jest --collect-coverage"
+    "test:dev": "jest --watchAll --collect-coverage"
   },
   "jest": {
     "testEnvironment": "node",
@@ -20,7 +19,7 @@
       "/node_modules/"
     ],
     "setupFilesAfterEnv": [
-      "./db/config/prepare.js"
+      "<rootDir>/__tests__/helpers/prepare.js"
     ],
     "silent": true
   },
