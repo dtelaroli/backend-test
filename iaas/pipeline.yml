@@ -53,6 +53,7 @@ Resources:
     Type: AWS::CodeBuild::Project
     Properties:
       Name: !Sub ${AWS::StackName}-${env}-pipepline
+      BadgeEnabled: true
       Source:
         Type: CODEPIPELINE
         BuildSpec: iaas/buildspec.yml
@@ -120,14 +121,8 @@ Resources:
             Name: BUCKET
             Value: !Ref ArtifactStoreBucket
           - Type: PLAINTEXT
-            Name: DB_HOST
-            Value: !Ref env
-          - Type: PLAINTEXT
             Name: DB_USERNAME
             Value: example
-          - Type: PLAINTEXT
-            Name: DB_PASSWORD
-            Value: !Ref dbPassword
 
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
