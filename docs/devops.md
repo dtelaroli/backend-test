@@ -13,11 +13,11 @@
 
 The infrastructure has been built with AWS Serveless Application Model (SAM). The SAM is a CloudFormation model based to build and deploy serverless applications at AWS.
 
-Basically, this projects has been built with a [SAM Template (template.yml)](../blob/master/iaas/template.yml) which describes all API infrastructure.
+Basically, this projects has been built with a [SAM Template (template.yml)](../iaas/template.yml) which describes all API infrastructure.
 
 ### CI/CD
 
-The project also contains a [SAM template (pipeline.yml)](../blob/master/iaas/pipeline.yml) to deploy the pipelines. This pipeline is reponsible for deploy the SAM with CodeDeploy, creating and executing a ChangeSet (3º action).
+The project also contains a [SAM template (pipeline.yml)](../iaas/pipeline.yml) to deploy the pipelines. This pipeline is reponsible for deploy the SAM with CodeDeploy, creating and executing a ChangeSet (3º action).
 
 The pipeline is started each time that a merge is done in develop (staging) and master branch (production) at Github Repo via WebHook, firing the 1º action Download Source.
 
