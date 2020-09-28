@@ -17,6 +17,8 @@ This API has a built-in playground and documentation available to easy test and 
 
 https://a1yat4qcz3.execute-api.us-east-1.amazonaws.com/dev/graphql
 
+[Exported API Docs](schema)
+
 ### Query examples
 
 ```
