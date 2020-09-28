@@ -35,6 +35,7 @@ migrate:
 mb-dev:
 	aws s3 mb s3://backent-dev-test
 
+# Requires make mb-dev
 deploy-dev:
 	cd iaas && aws-vault exec my-account-dev -- sh deploy-dev.sh
 

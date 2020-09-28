@@ -82,6 +82,8 @@ make mb-dev
 
 Any changes on file [pipeline.yml](../iaas/pipeline.yml) can be deployed with this comnand.
 
+Requires `make mb-dev`
+
 ```
 make deploy-dev
 ```
@@ -91,7 +93,7 @@ make deploy-dev
 Delete the CloudFormation stack and S3 bucket deployment
 
 ```
-cleanup-dev
+make cleanup-dev
 ````
 
 ### Fixing NPM bug
@@ -99,7 +101,7 @@ cleanup-dev
 There is a npm bug in one dependency that does not support mtime timestamps, I don't have more know how about that, but this command it's a workaround to solve.
 
 ```
-fix-npm-bug
+make fix-npm-bug
 ```
 
 See the Makefile commands to learn more about the commands.
