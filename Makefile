@@ -40,8 +40,10 @@ deploy-dev:
 	cd iaas && aws-vault exec my-account-dev -- sh deploy-dev.sh
 
 cleanup-dev:
+	aws-vault exec my-account-dev -- aws cloudformation delete-stack --stack-name backend-test-dev
+  # TODO search artifact bucket
 	aws-vault exec my-account-dev -- aws cloudformation delete-stack --stack-name backend-test
 	aws-vault exec my-account-dev -- aws s3 rb s3://backent-dev-test --force
-
+	
 fix-npm-bug:
 	cd api/src && find ./node_modules/* -mtime +10950 -exec touch {} \;
